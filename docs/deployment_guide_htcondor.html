@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SIMPLE Framework Deployment Guide: HTCondor · The SIMPLE Framework</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Terminal Captures: https://asciinema.org/~maany"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SIMPLE Framework Deployment Guide: HTCondor · The SIMPLE Framework"/><meta property="og:type" content="website"/><meta property="og:url" content="https://simple-framework.github.io/"/><meta property="og:description" content="Terminal Captures: https://asciinema.org/~maany"/><meta property="og:image" content="https://simple-framework.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://simple-framework.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/SIMPLE_Logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://simple-framework.github.io/blog/atom.xml" title="The SIMPLE Framework Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://simple-framework.github.io/blog/feed.xml" title="The SIMPLE Framework Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/SIMPLE_Logo.png" alt="The SIMPLE Framework"/><h2 class="headerTitleWithLogo">The SIMPLE Framework</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/deployment_guide_htcondor" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Setting up HTCondor Pool with SIMPLE</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Setting up HTCondor Pool with SIMPLE</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/deployment_guide_htcondor">Deployment Guide: HTCondor</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SIMPLE Framework Deployment Guide: HTCondor · The SIMPLE Framework</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Quick Introduction"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SIMPLE Framework Deployment Guide: HTCondor · The SIMPLE Framework"/><meta property="og:type" content="website"/><meta property="og:url" content="https://simple-framework.github.io/"/><meta property="og:description" content="## Quick Introduction"/><meta property="og:image" content="https://simple-framework.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://simple-framework.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/SIMPLE_Logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://simple-framework.github.io/blog/atom.xml" title="The SIMPLE Framework Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://simple-framework.github.io/blog/feed.xml" title="The SIMPLE Framework Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/SIMPLE_Logo.png" alt="The SIMPLE Framework"/><h2 class="headerTitleWithLogo">The SIMPLE Framework</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/deployment_guide_htcondor" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Setting up HTCondor Pool with SIMPLE</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Setting up HTCondor Pool with SIMPLE</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/deployment_guide_htcondor">Deployment Guide: HTCondor</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -54,59 +54,902 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SIMPLE Framework Deployment Guide: HTCondor</h1></header><article><div><span><p>Terminal Captures: <a href="https://asciinema.org/~maany">https://asciinema.org/~maany</a></p>
-<p>A newer and more in depth version of this tutorial will be uploaded as we update the website. Please <a href="../help">reach out to us directly</a> if you need more assistance and we would be happy to help you get started.</p>
-<h2><a class="anchor" aria-hidden="true" id="preparation-of-nodes"></a><a href="#preparation-of-nodes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preparation of Nodes</h2>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SIMPLE Framework Deployment Guide: HTCondor</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="quick-introduction"></a><a href="#quick-introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Introduction</h2>
+<p>This tutorial describes setting up a production ready <a href="https://research.cs.wisc.edu/htcondor/">HTCondor</a> cluster using the SIMPLE Framework.</p>
+<h3><a class="anchor" aria-hidden="true" id="target-audience"></a><a href="#target-audience" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Target Audience</h3>
+<p>The target audience for this tutorial are WLCG Site admins who wish to :</p>
 <ol>
-<li><p>Pick a config master node in your infrastructure. We will refer it as CM in the rest of the document. All the other nodes in your infrastructure on which you want to run grid services configured through the SIMPLE Grid framework are lightweight_component nodes of LC nodes.</p></li>
-<li><p>Install puppetserver, puppet-agent (Puppet 5) on your CM node. For CentOS7 distributions, the commands would be:</p>
-<pre><code class="hljs">rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-<span class="hljs-keyword">release</span>-el<span class="hljs-number">-7.</span>noarch.rpm
-yum -y <span class="hljs-keyword">install</span> puppetserver puppet-<span class="hljs-keyword">agent</span>
+<li>Try out the SIMPLE framework, a private PaaS that can deploy WLCG services on demand at their site.</li>
+<li>Migrate to HTCondor from existing CREAM-CE based WLCG infrastructure at their sites.</li>
+<li>Quickly set up a test HTCondor cluster on a few nodes of their infrastructure that can subsequently be used to
+get familiar with HTCondor before they perform a full-scale migration to HTCondor.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="overview-of-the-tutorial"></a><a href="#overview-of-the-tutorial" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview of the Tutorial</h3>
+<p>In this tutorial, we will :</p>
+<ol>
+<li>Select at least 4 machines (bare-metal/VM) in your infrastructure on which the SIMPLE framework and HTCondor will be set up.
+We will refer to these as your <strong>SIMPLE cluster</strong> in the remainder of this tutorial</li>
+<li>Prepare your SIMPLE cluster to work with the <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a>.</li>
+<li>Create a site_level_config_file.yaml (a YAML file similar to site-info.def if you are familiar with
+<a href="https://twiki.cern.ch/twiki/bin/view/LCG/YaimGuide400">YAIM</a>) that describes your SIMPLE cluster and the
+HTCondor-CE, HTCondor-Batch(Central Manager) and HTCondor-Worker(Execute) configuration.</li>
+<li>Execute the SIMPLE framework's config, pre_deploy and deploy stages to setup HTCondor on your SIMPLE cluster.</li>
+<li>Run few HTCondor commands to evaluate the status of your cluster.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="additional-notes"></a><a href="#additional-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional Notes</h3>
+<ol>
+<li>Terminal Captures for the appropriate steps described in this tutorial are available here: <a href="https://asciinema.org/~maany">https://asciinema.org/~maany</a>.
+While the tutorial is going to include links to some of them for the steps mentioned below, please feel free to
+check out rest of the terminal captures via the link above.</li>
+<li>We are a fast-paced development community and are constantly adding new features to the framework. Therefore, please
+feel free to check this tutorial for updates that can be useful for your future deployments.</li>
+<li>Please do <a href="../help">get in touch</a> with us in case any step is not clear or needs clarification.
+We will try to maintain a Known Issues and FAQ section at the end of this tutorial that can be useful for
+fellow site-admins who try to deploy HTCondor with SIMPLE at their sites.</li>
+<li>We are always keen to get your feedback/suggestions/bug reports and feature requests. You can report them on any
+of the <a href="../help">communication channels</a></li>
+</ol>
+<p>Let's begin!</p>
+<h2><a class="anchor" aria-hidden="true" id="simple-cluster"></a><a href="#simple-cluster" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SIMPLE cluster</h2>
+<p>The very first thing you must do is to select <strong>at least 4 CC7 machines</strong> at your data center where you would like
+to deploy the HTCondor cluster. One of these machines is going to serve as the <strong>Config Master</strong> node, while
+remainder serve as <strong>Lightweight Component</strong> nodes.</p>
+<p><strong>Config Master or CM</strong> and <strong>Lightweight Component or LC</strong> are commonly used terminologies in the SIMPLE framework.
+The Lightweight Component nodes are where lightweight components i.e. containerized grid services, HTCondor in this case,
+are deployed. The Config Master is a single node in the SIMPLE cluster that manages the deployment of the
+lightweight components i.e. containerized grid services on your Lightweight Component nodes.</p>
+<p><strong>Note</strong>: In the remainder of this tutorial <strong>we will refer to Config Master as CM and Lightweight Components as LC</strong>.</p>
+<p>One of your LC nodes is going to run the HTCondor-CE, another one of your LC nodes will run the HTCondor Batch
+while the rest of your LC nodes are going to run HTCondor Workers. The criterion for selecting nodes for each type of
+service is listed in the next subsection below.</p>
+<p><strong>Note</strong> : It is possible to deploy HTCondor Submitters to <strong>support the local users with SIMPLE</strong> as well. If you foresee this use-case,
+please <a href="../help">get in touch</a> to learn more about it. We are still developing/testing this use case with our early adopters.
+Will be rolling out the official instructions for local user support soon. In the meantime, we are happy to provide you details
+on what we have and collaborate to tailor the local users use-case as per your requirements.</p>
+<h3><a class="anchor" aria-hidden="true" id="hardware-specifications"></a><a href="#hardware-specifications" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hardware Specifications</h3>
+<p>You might be able to operate slightly below the requirements mentioned below.
+In the example, for instance, our OpenStack nodes do not exactly meet the recommended hardware specifications.
+However, since it is just a test cluster, we are able to demonstrate the framework with the slightly less powerful resources.
+In real production examples, we recommend that you ensure your nodes meet the recommended requirements.
+It is difficult to predict the performance of the system otherwise.</p>
+<h4><a class="anchor" aria-hidden="true" id="for-small-or-test-htcondor-simple-cluster-10-nodes"></a><a href="#for-small-or-test-htcondor-simple-cluster-10-nodes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>For small or test HTCondor SIMPLE cluster (~ 10 nodes)</h4>
+<p>The recommended requirements for the CM and LC nodes for your HTCondor SIMPLE cluster are as follows:</p>
+<table>
+<thead>
+<tr><th>Node Type</th><th>HTCondor Role</th><th># CPU Cores</th><th>RAM(GB)</th><th>Swap(GB)</th><th>Disk(GB) -  Root Filesystem</th></tr>
+</thead>
+<tbody>
+<tr><td>CM</td><td>N/A</td><td>2</td><td>2*#cores (puppetserver)</td><td>1</td><td>12(image) + 1(puppetserver)</td></tr>
+<tr><td>LC</td><td>HTCondor CE</td><td>1</td><td>2(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
+<tr><td>LC</td><td>HTCondor Batch</td><td>1</td><td>2(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
+<tr><td>LC</td><td>HTCondor Worker</td><td>1</td><td>2(swarm) + 2*#cores(HTCondor) + 1 (misc)</td><td>3*#cores</td><td>3(docker) + 5(image) + 10*#cores(HTCondor)</td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="for-larger-10-nodes-or-production-htcondor-simple-cluster"></a><a href="#for-larger-10-nodes-or-production-htcondor-simple-cluster" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>For larger (&gt;10 nodes) or production HTCondor SIMPLE Cluster</h4>
+<table>
+<thead>
+<tr><th>Node Type</th><th>HTCondor Role</th><th># CPU Cores</th><th>RAM(GB)</th><th>Swap(GB)</th><th>Disk(GB) - Root Filesystem</th></tr>
+</thead>
+<tbody>
+<tr><td>CM</td><td>N/A</td><td>4</td><td>2*#cores (puppetserver) + 2(misc)</td><td>2</td><td>12(image) + 2(puppetserver)</td></tr>
+<tr><td>LC</td><td>HTCondor CE</td><td>1</td><td>8(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
+<tr><td>LC</td><td>HTCondor Batch</td><td>1</td><td>8(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
+<tr><td>LC</td><td>HTCondor Worker</td><td>8</td><td>8(swarm) + 2*#cores(HTCondor) + 1 (misc)</td><td>3*#cores</td><td>3(docker) + 5(image) + 10*#cores(HTCondor)</td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="specs-for-example-htcondor-simple-cluster-on-cern-openstack"></a><a href="#specs-for-example-htcondor-simple-cluster-on-cern-openstack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specs for Example HTCondor SIMPLE cluster on CERN OpenStack</h4>
+<p><strong>Note</strong>: The following cluster will be referred to as the <strong>example cluster</strong> in the rest of this tutorial. The terminal captures that we include
+in this tutorial will be from the example cluster.</p>
+<table>
+<thead>
+<tr><th>Node Type</th><th>FQDN</th><th>IP address</th><th>HTCondor Role</th><th>#cores</th><th>RAM(GB)</th><th>Swap(GB)</th><th>Disk(GB) - Root Filesystem</th></tr>
+</thead>
+<tbody>
+<tr><td>CM</td><td>simple-condor-cm.cern.ch</td><td>137.138.53.69</td><td>N/A</td><td>2</td><td>4</td><td>1</td><td>20</td></tr>
+<tr><td>LC</td><td>simple-lc-node0.cern.ch</td><td>188.185.115.228</td><td>CE</td><td>2</td><td>4</td><td>1</td><td>20</td></tr>
+<tr><td>LC</td><td>simple-lc-node1.cern.ch</td><td>188.185.118.59</td><td>Batch</td><td>2</td><td>4</td><td>1</td><td>20</td></tr>
+<tr><td>LC</td><td>simple-lc-node2.cern.ch</td><td>188.185.112.73</td><td>WN</td><td>4</td><td>8</td><td>12</td><td>60</td></tr>
+<tr><td>LC</td><td>simple-lc-node3.cern.ch</td><td>188.185.78.0</td><td>WN</td><td>4</td><td>8</td><td>12</td><td>60</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="pre-requisites"></a><a href="#pre-requisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pre-Requisites</h3>
+<h4><a class="anchor" aria-hidden="true" id="host-certificates"></a><a href="#host-certificates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Host Certificates</h4>
+<p>For your HTCondorCE to work, you will have to pre-arrange <strong>host certificates (hostkey.pem and hostcert.pem)</strong> from a trusted CA for your HTCondorCE LC node.
+On your CM, you will then create the following directory:</p>
+<p><strong>Note</strong>: The following commands are executed on the CM</p>
+<pre><code class="hljs css language-shell session">mkdir -p /etc/simple_grid/host_certificates/$fqdn_of_you_ce
+</code></pre>
+<p>In our example SIMPLE cluster, the HTCondorCE node is simple-lc-node0.cern.ch. Therefore, the above command would look as follows:</p>
+<pre><code class="hljs css language-shell script">mkdir -p /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch
+</code></pre>
+<p>Inside this newly created directory, place the hostkey.pem and hostcert.pem for your CE.
+You can optionally change the permissions on your hostkey.pem and hostcert.pem as follows</p>
+<pre><code class="hljs css language-shell script">chmod 644 /etc/simple_grid/host_certificates/$fqdn_of_your_ce
+chmod 600 /etc/simple_grid/host_certificates/$fqdn_of_your_ce/hostkey.pem
+chmod 644 /etc/simple_grid/host_certificates/$fqdn_of_your_ce/hostcert.pem
+</code></pre>
+<p>In your example cluster, the above commands would look like:</p>
+<pre><code class="hljs css language-shell script">chmod 644 /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch
+chmod 600 /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch/hostkey.pem
+chmod 644 /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch/hostcert.pem
+</code></pre>
+<p><a href="https://asciinema.org/a/296397"><img src="https://asciinema.org/a/296397.svg" alt="asciicast"></a></p>
+<p>Your host_certificates directly would finally resemble the following (continuing from our example):</p>
+<pre><code class="hljs css language-shell session"><span class="hljs-meta">$</span><span class="bash">ls -la /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch/</span>
+total 8
+drw-r--r-- 2 root root   45 Jan 23 15:12 .
+drwxr-xr-x 4 root root   69 Jan 23 15:12 ..
+-rw-r--r-- 1 root root 3060 Jan 23 15:12 hostcert.pem
+-rw------- 1 root root 1828 Jan 23 15:12 hostkey.pem
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="cvmfs-proxy"></a><a href="#cvmfs-proxy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CVMFS proxy</h4>
+<p>For the HTCondor Workers to run production jobs from the grid, you must have a local CVMFS Squid proxy(an easy to configure
+Squid forward proxy server) configured and running at your site.
+If you are migrating from CREAM-CE, it is likely that you already have a local CVMFS Squid proxy running locally at your site.
+If so, you can just re-use that for your HTCondor SIMPLE cluster. If not, please set up a CVMFS Squid proxy server on
+a node that does not belong to the SIMPLE cluster.
+If you support Atlas or CMS, you'll have to setup a <a href="https://twiki.cern.ch/twiki/bin/view/Frontier/InstallSquid">Frontier Squid server</a>.
+If not, then a regular Squid must be configured as described <a href="http://cernvm.web.cern.ch/portal/cvmfs/examples">here</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="selinux"></a><a href="#selinux" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SELinux</h4>
+<p>After you have identified a CM node and appropriate LC nodes, you must ensure that SELinux is disabled on the nodes.
+If you prefer to have SELinux enabled, please <a href="../help">get in touch</a> and we can help figure out the SELinux policy
+required by Docker and Puppet to function correctly. Otherwise, edit /etc/selinux/config and set SELINUX=disabled.
+Then, reboot your machine and make sure that output of the command ```sestatus`` is disabled.</p>
+<p>For instance, in our example, on one of the LC nodes:</p>
+<pre><code class="hljs css language-shell script">[root@simple-lc-node0 ~]# sestatus
+SELinux status:                 disabled
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="network-and-dns-settings"></a><a href="#network-and-dns-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network and DNS settings</h4>
+<p>Please check the DNS settings and /etc/hosts files to make sure all of the nodes in the SIMPLE cluster can reach
+each other over the network available at your site.
+In previous deployment instances, we have encountered situations where the deployment process would fail due to
+misconfiguration of network for the nodes in the SIMPLE cluster.</p>
+<h3><a class="anchor" aria-hidden="true" id="installation-of-puppet"></a><a href="#installation-of-puppet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation of Puppet</h3>
+<ol>
+<li><p>Install puppetserver, puppet-agent (Puppet 5) on your <strong>CM node</strong>. For CentOS7 distributions, the commands would be:</p>
+<pre><code class="hljs css language-shell script">rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+yum -y install puppetserver puppet-agent
 </code></pre></li>
-<li><p>Install puppet-agent (Puppet 5) on all of your LC nodes. For CC7, the commands are:</p>
+<li><p>Install puppet-agent (Puppet 5) on all of your <strong>LC nodes</strong>. For CC7, the commands are:</p>
 <pre><code class="hljs">rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-<span class="hljs-keyword">release</span>-el<span class="hljs-number">-7.</span>noarch.rpm
 yum <span class="hljs-keyword">install</span> puppet-<span class="hljs-keyword">agent</span>
 </code></pre></li>
-</ol>
-<h2><a class="anchor" aria-hidden="true" id="installation-of-central-configuration-manager-ie-simple-grid-puppet-module"></a><a href="#installation-of-central-configuration-manager-ie-simple-grid-puppet-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation of Central Configuration Manager i.e. Simple Grid Puppet Module</h2>
-<ol>
-<li><p>Download the <a href="https://forge.puppet.com/maany/simple_grid">simple grid puppet module</a> on all of your nodes inside /etc/puppetlabs/code/environments/production/modules/</p>
-<pre><code class="hljs">puppet <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">install</span> <span class="hljs-title">maany</span>-<span class="hljs-title">simple_grid</span></span>
+<li><p>Verify that puppet is installed. For instance,</p>
+<pre><code class="hljs css language-shell script">[root@simple-lc-node0 ~]# puppet --version
+ 2020-01-23 14:41:11.130354 WARN  puppetlabs.facter - locale environment variables were bad; continuing with LANG=C LC_ALL=C
+ 5.5.17
 </code></pre></li>
 </ol>
-<p>Note: Once the module has been released on Puppet Forge, you can use <code>puppet module install maany/simple-grid</code> to automatically download and install the puppet module.</p>
+<p><a href="https://asciinema.org/a/296405"><img src="https://asciinema.org/a/296405.svg" alt="asciicast"></a></p>
+<h2><a class="anchor" aria-hidden="true" id="installation-of-central-configuration-manager"></a><a href="#installation-of-central-configuration-manager" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation of Central Configuration Manager</h2>
+<p>The Central Configuration Manager or CCM in SIMPLE Framework's terminology is a framework component that manages
+the configuration and deployment of your SIMPLE Cluster. In case of puppet the CCM is the <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a>
+On the CM and all of the LC nodes, you will not install the latest <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a> from Puppet Forge
+using the command below:</p>
+<pre><code class="hljs css language-shell script">puppet module install maany-simple_grid
+</code></pre>
+<p><a href="https://asciinema.org/a/296406"><img src="https://asciinema.org/a/296406.svg" alt="asciicast"></a></p>
 <h2><a class="anchor" aria-hidden="true" id="preparing-a-site-level-configuration-file"></a><a href="#preparing-a-site-level-configuration-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preparing a site level configuration file.</h2>
-<ol>
-<li><p>On the CM node, you can use the command below to generate a sample site level configuration file for you at /etc/simple_grid/site_config/site_level_configuration_file</p>
-<pre><code class="hljs">puppet apply -e 'class{"simple_gri<span class="hljs-number">d::</span>install<span class="hljs-number">::</span>config_master<span class="hljs-number">::</span>simple_installer<span class="hljs-number">::</span>create_sample_site_level_config_file":}'
+<p>The site level configuration file is a YAML file where you describe your infrastructure and the lightweight components
+you wish to deploy on your infrastructure along with additional information related to VOs and quotas etc.
+The site level config is like a site-info.def file from the <a href="https://twiki.cern.ch/twiki/bin/view/LCG/YaimGuide400">YAIM</a>
+realm. It is the only configuration file you need to instruct the framework on how it should set-up and configure the
+grid services on your infrastructure.</p>
+<p>The framework provides a lot of features that can simplify and significantly reduce the size of the site level configuration file.
+Generally 100-200 lines are enough to deploy very large clusters.
+The discussion of these features(variable declaration, splitting of configuration into smaller config files, script injection,
+injection of additional config variables for grid services, ...) is out of scope for this tutorial. We are working on a detailed
+guide on writing site level configuration files.</p>
+<p>Here is what the site level configuration file for our example cluster looks like:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment">### url of schema</span>
+<span class="hljs-attr">schema:</span>  <span class="hljs-string">"https://raw.githubusercontent.com/WLCG-Lightweight-Sites/simple_grid_site_repo/master/simple_base_schema.yaml"</span>
 
-</code></pre></li>
-<li><p>Edit the site level configuration file to describe your infrastructure and the components you want to deploy. We are working on a in-depth tutorial on how to write a site level config file. In the meantime, please reach out to us via any of the communication channels mentioned in the footer of the website to learn more.</p></li>
+<span class="hljs-comment">### Variable declaration:</span>
+<span class="hljs-attr">global_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.118</span><span class="hljs-number">.59</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.112</span><span class="hljs-number">.73</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc-node2.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.78</span><span class="hljs-number">.0</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_fqdn</span> <span class="hljs-string">simple-lc-node3.cern.ch</span>
+
+<span class="hljs-attr">htcondor_ce_runtime_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_ce_runtime_var_ce_host</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+
+<span class="hljs-attr">htcondor_batch_runtime_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_runtime_var_batch_host</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
+
+<span class="hljs-attr">site:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">'OpenStack SIMPLE dev cluster'</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">latitude:</span> <span class="hljs-number">46.3</span>
+  <span class="hljs-attr">longitude:</span> <span class="hljs-number">6.2</span>
+  <span class="hljs-attr">location:</span> <span class="hljs-string">CERN</span>
+  <span class="hljs-attr">description:</span> <span class="hljs-string">'CERN WLCG Grid by SIMPLE at CERN Openstack'</span>
+  <span class="hljs-attr">website:</span> <span class="hljs-string">'https://home.cern'</span>
+  <span class="hljs-attr">support_website:</span> <span class="hljs-string">'https://groups.google.com/forum/#!forum/wlcg-lightweight-sites'</span>
+  <span class="hljs-attr">support_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">security_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">grid:</span> <span class="hljs-string">'wlcg'</span> <span class="hljs-comment">#site_other_grid: str(), wlcg, egi,osg</span>
+  <span class="hljs-attr">tier:</span> <span class="hljs-number">3</span>
+  <span class="hljs-attr">bdii_host:</span> <span class="hljs-string">bdii.cern.ch</span>
+  <span class="hljs-attr">cvmfs_http_proxy_list:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">"http://ca-proxy.cern.ch:3128"</span>
+  <span class="hljs-attr">use_argus:</span> <span class="hljs-literal">no</span>
+  <span class="hljs-attr">timezone:</span> <span class="hljs-string">CET</span>
+
+
+<span class="hljs-attr">preferred_tech_stack:</span>
+  <span class="hljs-attr">level_1_configuration:</span> <span class="hljs-string">puppet</span>
+  <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+  <span class="hljs-attr">container_orchestration:</span> <span class="hljs-string">docker-swarm</span>
+  <span class="hljs-attr">container:</span> <span class="hljs-string">docker</span>
+
+<span class="hljs-attr">site_infrastructure:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component01_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component02_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component03_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component04_ip_address</span>
+
+
+
+<span class="hljs-attr">lightweight_components:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">compute_element</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-CE</span>
+    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_ce"</span>
+    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">0</span>
+    <span class="hljs-attr">lifecycle_hooks:</span>
+      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+    <span class="hljs-attr">deploy:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">preferred_tech_stack:</span>
+      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+    <span class="hljs-attr">config:</span>
+      <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">supplemental_config:</span>
+      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">batch_system</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Batch</span>
+    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_batch"</span>
+    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">lifecycle_hooks:</span>
+      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+    <span class="hljs-attr">deploy:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">preferred_tech_stack:</span>
+      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+    <span class="hljs-attr">config:</span>
+      <span class="hljs-attr">placeholder_param:</span> <span class="hljs-string">some_value</span>
+    <span class="hljs-attr">supplemental_config:</span>
+      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">worker_node</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Worker</span>
+    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_worker"</span>
+    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">2</span>
+    <span class="hljs-attr">lifecycle_hooks:</span>
+      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+    <span class="hljs-attr">deploy:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">preferred_tech_stack:</span>
+      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+    <span class="hljs-attr">config:</span>
+      <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
+      <span class="hljs-attr">num_slots:</span> <span class="hljs-number">4</span>
+    <span class="hljs-attr">supplemental_config:</span>
+      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+<span class="hljs-attr">supported_virtual_organizations:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_alice</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_dteam</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_ops</span>
+
+<span class="hljs-attr">voms_config:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/alice'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_alice</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_alice</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/alice/ROLE=lcgadmin'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_alice</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_alicesgm</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_alice</span>
+    <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_dteam</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam/ROLE=lcgadmin'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteamsgm</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_dteam</span>
+    <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/ops'</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_ops</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_ops</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/ops/ROLE=lcgadmin'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_opssgm</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_ops</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_ops</span>
+    <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
+</code></pre>
+<p>The site level configuration file is compiled by the <a href="https://github.com/simple-framework/simple_grid_yaml_compiler">simple_grid_yaml_compiler</a>.
+It is essential to ensure that your site level configuration file can be successfully compiled by it.</p>
+<p>At present, to ensure you can compile your site level configuration file, you can:</p>
+<ol>
+<li><a href="../help">Get in touch</a> with us directly and we will help compile and fix any errors in the site level configuration file.</li>
+<li>Setup <a href="https://github.com/simple-framework/simple_grid_yaml_compiler">compiler</a> as described <a href="https://github.com/simple-framework/simple_grid_yaml_compiler/blob/master/README.md">here</a>
+and run it with your site level configuration file as the input.</li>
 </ol>
+<p>To simplify the process, we are working on a web based compiler, which will be available soon.</p>
+<p>Below, we mention the instructions that should be sufficient to write a sensible site level configuration file.</p>
+<p>First off, the framework can significantly assist you in writing your site level config file by generating
+a template for your HTCondor installation.</p>
+<p>To do so, on the CM node, you can use the command below to generate a sample site level configuration file that you can modify
+for your installation. The sample HTCondor site_level_config_file.yaml is available at
+<strong>/etc/simple_grid/site_config/site_level_config_file.yaml</strong></p>
+<pre><code class="hljs css language-shell script">puppet apply -e 'class{"simple_grid::install::config_master::simple_installer::create_sample_site_level_config_file":}'
+</code></pre>
+<p><a href="https://asciinema.org/a/296526"><img src="https://asciinema.org/a/296526.svg" alt="asciicast"></a>
+Use any text editor to open the site level configuration file:</p>
+<pre><code class="hljs css language-shell script">mkdir -p /etc/simple_grid/site_config
+vim /etc/simple_grid/site_config/site_level_config_file.yaml
+</code></pre>
+<p>You will see that the configuration file has the following distinct sections:</p>
+<ol>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L1">schema</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L4">global_variables</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L12-L16">runtime_variables</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L18">site</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L38">preferred_tech_stack</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L44">site_infrastructure</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L52">lightweight_components</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L108">supported_virtual_organizations</a></li>
+<li><a href="https://github.com/simple-framework/simple_grid_puppet_module/blob/production/templates/htcondor_sample_site_level_config_file.yaml.epp#L113">voms_config</a></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="schema"></a><a href="#schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schema</h3>
+<p>This field can be left untouched. It instructs the compiler to use the following
+<a href="https://raw.githubusercontent.com/WLCG-Lightweight-Sites/simple_grid_site_repo/master/simple_base_schema.yaml">schema</a>
+when compiling your site level configuration file.</p>
+<h3><a class="anchor" aria-hidden="true" id="global_variables"></a><a href="#global_variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>global_variables</h3>
+<p>The global variables sections is where you declare variables that can be re-used throughout your
+site level configuration file.
+To declare a new variable involves add an entry under the global variables section.
+In the sample site level configuration file, you will see that we already have some variables declared:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment">### Variable declaration:</span>
+<span class="hljs-attr">global_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
+
+</code></pre>
+<p>To add a new variable, you can just create a new entry under the global_variables section. The new entry
+would have the following format:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">global_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">..</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">..</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;new_variable_name</span> <span class="hljs-string">value_of_the_variable</span>
+</code></pre>
+<p>Let's create 2 new variables called condor_ce_ip_address and condor_ce_fqdn.</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">global_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;condor_ce_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;condor_ce_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+</code></pre>
+<p>We recommend creating a variable for the fqdn and ip address of each LC node and then re-using them throughout the site level configuration wherever required.</p>
+<p>For our example cluster, the global_variables section will look as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">global_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.118</span><span class="hljs-number">.59</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.112</span><span class="hljs-number">.73</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc-node2.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.78</span><span class="hljs-number">.0</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_fqdn</span> <span class="hljs-string">simple-lc-node3.cern.ch</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="runtime_variables"></a><a href="#runtime_variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>runtime_variables</h3>
+<p>The runtime variables are an advanced feature of the framework. They enable grid experts who add support for grid services through SIMPLE
+to request some additional information information from site admins that is required for configuring the grid services.</p>
+<p>It is necessary to provide a value to these variables to ensure that the containerized services can get configured properly.
+For the HTCondor SIMPLE cluster, we need two runtime_variables, namely,</p>
+<ul>
+<li><strong>htcondor_ce_runtime_var_ce_host</strong> : The FQDN of the LC node where you wish to deploy HTCondorCE</li>
+<li><strong>htcondor_batch_runtime_var_batch_host</strong>: The FQDN of LC node where you wish to deploy HTCondorBatch</li>
+</ul>
+<p>In our example, these sections look as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">htcondor_ce_runtime_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_ce_runtime_var_ce_host</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+
+<span class="hljs-attr">htcondor_batch_runtime_variables:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_runtime_var_batch_host</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
+</code></pre>
+<p>Update your site level configuration file to include the <em>htcondor_ce_runtime_variables</em> section and assign
+the <em>&amp;htcondor_ce_runtime_var_ce_host</em> variable to point to your HTCondorCE LC host.</p>
+<p>Then add the <em>htcondor_batch_runtime_variables</em> section to your site level configuration and update the value
+of <em>&amp;htcondor_runtime_var_batch_host</em> to point to your HTCondor Batch LC host.</p>
+<h3><a class="anchor" aria-hidden="true" id="site"></a><a href="#site" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>site</h3>
+<p>The site section contains generic information about your site like name, location, website, timezone, ... .</p>
+<p>For the test cluster you set up, you <strong>may</strong> update any or all of the fields based on your site.
+However, you <strong>must</strong> set the <strong>timezone</strong> field. Find your timezone relative to the <strong>/usr/share/zoneinfo</strong>
+directory and put the relative path as the value for the timezone field in the site section.</p>
+<p>You must also specify the CVMFS squid/s that should be used by the HTCondor-Workers in the <strong>cvmfs_http_proxy_list</strong>
+field, as shown.</p>
+<p>For the example cluster, the site section looks as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">site:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">'OpenStack SIMPLE dev cluster'</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">latitude:</span> <span class="hljs-number">46.3</span>
+  <span class="hljs-attr">longitude:</span> <span class="hljs-number">6.2</span>
+  <span class="hljs-attr">location:</span> <span class="hljs-string">CERN,</span> <span class="hljs-string">Geneva,</span> <span class="hljs-string">Switzerland</span>
+  <span class="hljs-attr">description:</span> <span class="hljs-string">'CERN HTCondor cluster by SIMPLE @ CERN Openstack'</span>
+  <span class="hljs-attr">website:</span> <span class="hljs-string">'https://home.cern'</span>
+  <span class="hljs-attr">support_website:</span> <span class="hljs-string">'https://groups.google.com/forum/#!forum/wlcg-lightweight-sites'</span>
+  <span class="hljs-attr">support_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">security_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">grid:</span> <span class="hljs-string">'wlcg'</span>
+  <span class="hljs-attr">tier:</span> <span class="hljs-number">3</span>
+  <span class="hljs-attr">bdii_host:</span> <span class="hljs-string">bdii.cern.ch</span>
+  <span class="hljs-attr">cvmfs_http_proxy_list:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">"http://ca-proxy.cern.ch:3128"</span>
+  <span class="hljs-attr">use_argus:</span> <span class="hljs-literal">no</span>
+  <span class="hljs-attr">timezone:</span> <span class="hljs-string">CET</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="preferred_tech_stack"></a><a href="#preferred_tech_stack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>preferred_tech_stack</h3>
+<p>SIMPLE framework, by design, can be implemented in various popular tools for configuration management, container orchestration, etc.</p>
+<p>This section describes the set of technologies the framework should use to configure the LC hosts and HTCondor containers.</p>
+<p>For now, the section can remain unchanged, as the supported technologies do not have any alternatives.</p>
+<p>For our example and for your SIMPLE cluster, this section would look as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">preferred_tech_stack:</span>
+  <span class="hljs-attr">level_1_configuration:</span> <span class="hljs-string">puppet</span>
+  <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+  <span class="hljs-attr">container_orchestration:</span> <span class="hljs-string">docker-swarm</span>
+  <span class="hljs-attr">container:</span> <span class="hljs-string">docker</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="site_infrastructure"></a><a href="#site_infrastructure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>site_infrastructure</h3>
+<p>In this section, you tell the framework about how to access the LC hosts. If any of your LC hosts have <strong>multiple network interfaces</strong>,
+please use the IP address that corresponds to the interface that can access all the other LC hosts in your network.</p>
+<p>For each LC host, you need to make an entry that consists of its fqdn and IPv4 address.
+For instance, the YAML object for a node simple-lc-node0.cern.ch with IPv4 address 188.184.104.25 would look as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">site_infrastructure:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
+</code></pre>
+<p>If in the global variables section, if there already exists is an entry for the FQDN and IP addresses of your LC nodes,
+we could directly use the values of these variables.
+Let's say lightweight_component01_fqdn corresponds to simple-lc-node0.cern.ch, while lightweight_component01_ip_address
+corresponds to 188.184.104.25, then the above section can be re-written as:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">site_infrastructure:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component01_ip_address</span>
+</code></pre>
+<p>For our example cluster, where we have already declared variables for the IP Addresses and FQDNs for each of our LC hosts,
+this section looks as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">site_infrastructure:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component01_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component02_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component03_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component04_ip_address</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="lightweight_components"></a><a href="#lightweight_components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>lightweight_components</h3>
+<p>In this section you tell the framework about the configuration of the grid services that should be deployed on the LC hosts,
+specified in the site_infrastructure section. For the SIMPLE HTCondor cluster, these services are the HTCondor-CE,
+HTCondor-Batch and HTCondor-Workers.</p>
+<p>The following YAML code describes our example HTCondor cluster. You can use it as-is for your own SIMPLE HTCondor cluster
+after applying the modifications mentioned below:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">lightweight_components:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">compute_element</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-CE</span>
+    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_ce"</span>
+    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">0</span>
+    <span class="hljs-attr">lifecycle_hooks:</span>
+      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+    <span class="hljs-attr">deploy:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">preferred_tech_stack:</span>
+      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+    <span class="hljs-attr">config:</span>
+      <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">supplemental_config:</span>
+      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">batch_system</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Batch</span>
+    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/andria009/simple_htcondor_batch"</span>
+    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">lifecycle_hooks:</span>
+      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+    <span class="hljs-attr">deploy:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">preferred_tech_stack:</span>
+      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+    <span class="hljs-attr">config:</span>
+      <span class="hljs-attr">placeholder_param:</span> <span class="hljs-string">some_value</span>
+    <span class="hljs-attr">supplemental_config:</span>
+      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">worker_node</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Worker</span>
+    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_worker"</span>
+    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">2</span>
+    <span class="hljs-attr">lifecycle_hooks:</span>
+      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+    <span class="hljs-attr">deploy:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>      
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
+        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>      
+    <span class="hljs-attr">preferred_tech_stack:</span>
+      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+    <span class="hljs-attr">config:</span>
+      <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
+      <span class="hljs-attr">num_slots:</span> <span class="hljs-number">4</span>
+    <span class="hljs-attr">supplemental_config:</span>
+      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+</code></pre>
+<p>For each of HTCondor-CE, HTCondor-Batch and HTCondor-Worker, please modify the <strong>node field</strong> of the <strong>deploy sections</strong> to point to
+the corresponding LC node/s in you cluster.</p>
+<p>In the config section of the HTCondor-Worker, please adjust the <strong>num_slots</strong> parameter to a number less than or
+equal to the number of cores available on the LC host/s where you wish to deploy the HTCondor-Worker.</p>
+<p>For the purpose of the the test cluster, you may leave everything else in the lightweight_components section unchanged.
+It is possible to fine-tune the HTCondor configuration directly from the lightweight_components section.
+We will create a detailed document describing how to do so. Please <a href="../help">talk to us</a> to learn more about these.</p>
+<p>In the meantime, here's a quick note on the advanced configuration fields/sub-sections of a lightweight component:</p>
+<ul>
+<li><p><strong>execution_id</strong>: This field controls the order in which grid services are deployed. Lower execution ids are executed the earliest.</p></li>
+<li><p><strong>lifecycle_hooks</strong>: The lifecycle_hooks section enables you to inject custom shell scripts to customize the deployment of grid services.</p></li>
+<li><p><strong>supplemental_config</strong>: The supplemental config section enables you to inject custom condor configuration knobs directly in the HTCondor configuration files.
+You can also use the supplemental config section to modify any other file inside of the grid service containers.
+For instance, you could modify the /etc/hosts to add DNS info for your local site services.</p></li>
+<li><p><strong>preferred_tech_stack</strong>: The preferred_tech_stack section can be used to control the configuration management technology used to configure HTCondor
+inside of the containers. At present, the only supported configuration technology is <em>shell</em>, hence the value of level_2_configuration is <em>sh</em>.</p></li>
+<li><p><strong>repository_url</strong>: The GitHub URL of a lightweight component repository, or simply a component repository. It contains the HTCondor containers and configuration code that will run
+on your infrastructure.</p></li>
+<li><p><strong>repository_revision</strong>: The branch/tag on GitHub determining the  component repository version.</p></li>
+<li><p><strong>config</strong>: This section is where you provide values for variables mentioned in the config-schema.yaml files present
+at the root of the corresponding component repositories. For HTCondor-CE, the config-schema.yaml is present
+<a href="https://github.com/simple-framework/simple_htcondor_ce/blob/master/config-schema.yaml">here</a>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="supported_virtual_organizations"></a><a href="#supported_virtual_organizations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>supported_virtual_organizations</h3>
+<p>Here you tell the framework about the VOs that your site supports. The framework provides <strong>default VO Configuration
+for all four LHC VOs, dteam and ops</strong>. The default variables that you can use in your site level configuration file
+can be seen in the site_level_configuration_defaults.yaml file present
+<a href="https://github.com/simple-framework/simple_grid_site_repo/blob/master/site_level_configuration_defaults.yaml">here</a>.</p>
+<p>To support Atlas and Alice in your site,</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">supported_virtual_organizations:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_atlas</span>
+<span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_alice</span>
+</code></pre>
+<p>In our example cluster, we support Alice, Ops and Dteam VOs, therefore the supported_virtual_organizations section looks as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">supported_virtual_organizations:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_alice</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_dteam</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_ops</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="voms_config"></a><a href="#voms_config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>voms_config</h3>
+<p>This section describes the VOMS FQANs to pool accounts mapping that the framework should configure for relevant grid services.
+For our example cluster, this section looks as follows:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">voms_config:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/alice'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_alice</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_alice</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/alice/ROLE=lcgadmin'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_alice</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_alicesgm</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_alice</span>
+    <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_dteam</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam/ROLE=lcgadmin'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteamsgm</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_dteam</span>
+    <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/ops'</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_ops</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_ops</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/ops/ROLE=lcgadmin'</span>
+    <span class="hljs-attr">pool_accounts:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_opssgm</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_ops</span>
+    <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_ops</span>
+    <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
+</code></pre>
+<p>Please modify this section accordingly, based on the VOs you support, in your own site level configuration file.
+The default variables for all four LHC VOs, DTeam and Ops that you can use can be seen in
+<a href="https://github.com/simple-framework/simple_grid_site_repo/blob/master/site_level_configuration_defaults.yaml">this file</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="simple-installer-for-cm"></a><a href="#simple-installer-for-cm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple Installer for CM</h2>
-<p>After writing the site level configuration file, run the simple installer on the CM node using to validate your site level confiuration file and install/configure various components of the SIMPLE framework on CM:</p>
-<pre><code class="hljs">puppet apply --modulepath <span class="hljs-regexp">/etc/</span>puppetlabs<span class="hljs-regexp">/code/</span>environments<span class="hljs-regexp">/production/m</span>odules -e <span class="hljs-string">'class{"simple_grid::install::config_master::simple_installer":}'</span>
+<p>After writing the site level configuration file and, preferably, pre-checking it for any compilation errors through the
+mechanisms mentioned in the previous section, we need to initialize the SIMPLE framework by running the simple installer
+on the CM node.</p>
+<pre><code class="hljs css language-shell script">puppet apply --modulepath /etc/puppetlabs/code/environments/production/modules -e 'class{"simple_grid::install::config_master::simple_installer":}'
 </code></pre>
-<p>If there are errors related to the site level configuration file, please make the corrections and re-run the command until it executes successfully or get in touch with us to help debug the file.</p>
+<p><a href="https://asciinema.org/a/296529"><img src="https://asciinema.org/a/296529.svg" alt="asciicast"></a></p>
+<p>If you see any errors related to the YAML compiler, please take a look at the troubleshooting section towards the end of
+this tutorial. As always, please feel free to <a href="../help">get in touch with us</a> to help debug the error, if needed.</p>
 <h2><a class="anchor" aria-hidden="true" id="simple-installer-for-lcs"></a><a href="#simple-installer-for-lcs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple Installer for LC's</h2>
-<p>On your LC nodes, you have to connect puppet agents to the puppet server running on the CM node. To do so and also configure the SIMPLE Grid Framework on the LC nodes, run the following command after replacing the 'fqdn of your CM node' with the correct fqdn of your CM node:</p>
-<pre><code class="hljs">puppet apply --modulepath <span class="hljs-regexp">/etc/</span>puppetlabs<span class="hljs-regexp">/code/</span>environments<span class="hljs-regexp">/production/m</span>odules -e <span class="hljs-string">"class {'simple_grid::install::lightweight_component::simple_installer':puppet_master =&gt; 'fqdn of your CM node'}"</span>
+<p>On your LC nodes, run the following command to initialize the SIMPLE Framework.
+Remember to change the 'fqdn of your CM node' with the correct fqdn of your CM node.</p>
+<pre><code class="hljs css language-shell script">puppet apply --modulepath /etc/puppetlabs/code/environments/production/modules -e "class {'simple_grid::install::lightweight_component::simple_installer':puppet_master =&gt; 'fqdn of your CM node'}"
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="signing-certificate-requests-from-lcs-on-cm"></a><a href="#signing-certificate-requests-from-lcs-on-cm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signing certificate requests from LC's on CM</h2>
-<p>On your CM node, see the certificate requests from LC's using:</p>
-<pre><code class="hljs">puppet cert <span class="hljs-literal">show</span> -<span class="hljs-literal">all</span>
+<p><a href="https://asciinema.org/a/296547"><img src="https://asciinema.org/a/296547.svg" alt="asciicast"></a></p>
+<h2><a class="anchor" aria-hidden="true" id="puppet-certificate-singing-requests-from-lcs-to-cm"></a><a href="#puppet-certificate-singing-requests-from-lcs-to-cm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Puppet certificate singing requests from LC's to CM</h2>
+<p>On your CM node, you will now see the certificate signing requests from LC's using:</p>
+<pre><code class="hljs css language-shell script">puppet cert list -all
 </code></pre>
-<p>And sign the certificate requests from the LC nodes using</p>
-<pre><code class="hljs">puppet cert <span class="hljs-built_in">sign</span> --<span class="hljs-built_in">all</span>
+<p>Sign the certificate requests from the LC nodes:</p>
+<pre><code class="hljs css language-shell script">puppet cert sign --all
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="big-red-button"></a><a href="#big-red-button" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Big Red button</h2>
-<p>Then on the CM node, to execute the pre_deploy stage of the framework, run</p>
-<pre><code class="hljs"><span class="hljs-attribute">puppet agent -t</span>
+<p><a href="https://asciinema.org/a/296549"><img src="https://asciinema.org/a/296549.svg" alt="asciicast"></a></p>
+<p><strong>Note</strong>: If you do not see any certificate signing requests, please check that Port 8140 is open on your CMs firewall
+and that the LCs can reach the CM over your network. Then try again.</p>
+<h2><a class="anchor" aria-hidden="true" id="some-good-to-know-things"></a><a href="#some-good-to-know-things" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Some 'Good to Know' things</h2>
+<p><strong>Note</strong>: You can skip this section and come back to it if needed. It contains some useful insights into the framework
+that are good to keep in mind when deploying your cluster.</p>
+<h3><a class="anchor" aria-hidden="true" id="execution-pipeline"></a><a href="#execution-pipeline" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Execution Pipeline</h3>
+<p>The framework's execution pipeline consists of the following stages for the CM:</p>
+<ol>
+<li><strong>install</strong> : Install framework components</li>
+<li><strong>config</strong>: Configure framework components</li>
+<li><strong>pre_deploy</strong>: Prepare LCs for deploying the grid services</li>
+<li><strong>deploy</strong>: Deploy and Configure containerized grid services</li>
+<li><strong>final</strong>:  The final stage indicating that the grid services have been deployed.</li>
+</ol>
+<p>For a LC node, the <strong>pre_deploy</strong> stage is broken down into 3 steps:</p>
+<ol>
+<li>pre_deploy_step_1</li>
+<li>pre_deploy_step_2</li>
+<li>pre_deploy_step_3</li>
+</ol>
+<p>And the <strong>deploy</strong> stage is broken down into 2 steps:</p>
+<ol>
+<li>deploy_step_1</li>
+<li>deploy_step_2</li>
+</ol>
+<p>So far, we have completed the <strong>install</strong> and <strong>config</strong> stages for our CM and LC nodes.
+From now, we shall only interact with the CM node, which will execute and manage the stages appropriately for all the
+LC nodes.</p>
+<p>To check the stage of any of your CM or LC nodes, you can run the following command:</p>
+<pre><code class="hljs css language-shell script">puppet facts | grep simple_stage
 </code></pre>
-<p>Continue to the deploy stage by repeating the command again.</p>
-<pre><code class="hljs"><span class="hljs-attribute">puppet agent -t</span>
+<h3><a class="anchor" aria-hidden="true" id="puppet-bolt"></a><a href="#puppet-bolt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Puppet Bolt</h3>
+<p>After the config stage, you can use Puppet Bolt on your CM to directly execute shell commands and scripts on some or
+all of your LCs.
+Let's say we wish to check the stage for our nodes, then the bolt command would look as follows:</p>
+<pre><code class="hljs css language-shell script">bolt command run 'puppet facts| grep simple_stage' --nodes simple-lc-node0.cern.ch, simple-lc-node1.cern.ch, simple-lc-node2.cern.ch, simple-lc-node3.cern.ch
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#preparation-of-nodes">Preparation of Nodes</a></li><li><a href="#installation-of-central-configuration-manager-ie-simple-grid-puppet-module">Installation of Central Configuration Manager i.e. Simple Grid Puppet Module</a></li><li><a href="#preparing-a-site-level-configuration-file">Preparing a site level configuration file.</a></li><li><a href="#simple-installer-for-cm">Simple Installer for CM</a></li><li><a href="#simple-installer-for-lcs">Simple Installer for LC's</a></li><li><a href="#signing-certificate-requests-from-lcs-on-cm">Signing certificate requests from LC's on CM</a></li><li><a href="#big-red-button">Big Red button</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/SIMPLE_Logo.png" alt="The SIMPLE Framework" width="66" height="58"/></a><div><h5>Docs</h5><a href="https://twiki.cern.ch/twiki/bin/view/LCG/SIMPLEGridProject">CERN TWiki</a><a href="/docs/en/deployment_guide_htcondor.html">Deployment Guide: HTCondor</a></div><div><h5>Community</h5><a href="https://groups.google.com/forum/#!forum/wlcg-lightweight-sites">Google Groups</a><a href="https://join.slack.com/t/simple-framework/shared_invite/enQtODE4NzY2MTk2OTY0LWZmNjQ0NThmNDRiMzc1YTUxMzU3MTNjOGU4YWRlN2E0MzI5NjQ3ZDNjMDkxYjYzMjdkZGQyNzJjNmMwNzlmNWY" target="_blank" rel="noreferrer noopener">Slack Channel</a><a href="https://e-groups.cern.ch/e-groups/Egroup.do?egroupId=10285344" target="_blank" rel="noreferrer noopener">CERN E-Groups</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/simple-framework">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="http://wlcg.web.cern.ch/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/wlcg-logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 CERN</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>This command can be further simplified by creating a text file called, let's say, lc and then adding, one per line, the FQDN of the node
+on which we wish to execute a shell command.
+For our example cluster, we create the lc file as follows:</p>
+<pre><code class="hljs css language-shell script">vim /etc/simple_grid/lc
+</code></pre>
+<p>and add the following content to it:</p>
+<pre><code class="hljs css language-text">simple-lc-node0.cern.ch
+simple-lc-node1.cern.ch
+simple-lc-node2.cern.ch
+simple-lc-node3.cern.ch
+</code></pre>
+<p>Now, the above bolt command can be reduced to:</p>
+<pre><code class="hljs css language-shell script">bolt command run 'puppet facts| grep simple_stage' --nodes @/etc/simple_grid/lc
+</code></pre>
+<p><a href="https://asciinema.org/a/296551"><img src="https://asciinema.org/a/296551.svg" alt="asciicast"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="execution-pipeline-traversal"></a><a href="#execution-pipeline-traversal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Execution Pipeline Traversal</h3>
+<h4><a class="anchor" aria-hidden="true" id="forward-direction"></a><a href="#forward-direction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Forward direction</h4>
+<p>The recipes here describe how to go from one stage to another in the execution pipeline.</p>
+<table>
+<thead>
+<tr><th>Current Stage</th><th>Next Stage</th><th>Node Type</th><th>Command</th></tr>
+</thead>
+<tbody>
+<tr><td>install</td><td>pre_deploy</td><td>CM</td><td><code>puppet apply -e &quot;class{'simple_grid::install::config_master::simple_installer':}&quot;</code></td></tr>
+<tr><td>pre_deploy</td><td>deploy</td><td>CM</td><td><code>puppet agent -t</code></td></tr>
+<tr><td>deploy</td><td>final</td><td>CM</td><td><code>puppet agent -t</code></td></tr>
+<tr><td>install</td><td>config/pre_deploy_step_1</td><td>LC*</td><td><code>puppet apply -e &quot;class{'simple_grid::install::lightweight_component::simple_installer':}&quot;</code></td></tr>
+</tbody>
+</table>
+<p><strong>Note</strong>*: The command sets the stage to <em>config</em> and puppet agent runs in the background to fetch some additional configuration from the CM. Once that is complete,
+the stage is set to <em>pre_deploy_step_1</em>. This command is executed only once per deployment. Since we have executed it in previous steps, we could not have to execute it again.</p>
+<h4><a class="anchor" aria-hidden="true" id="reverse-direction"></a><a href="#reverse-direction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reverse direction</h4>
+<p>Life's not perfect and despite our best efforts we may run into unexpected issues during the framework's execution.
+In the past we have seen network errors or configuration errors which required us to rollback to previous_stages, fix the issues
+and then proceed with the execution pipeline. The table below describes the rollback commands:</p>
+<table>
+<thead>
+<tr><th>Current Stage</th><th>Next Stage</th><th>Node Type</th><th>Command</th></tr>
+</thead>
+<tbody>
+<tr><td>final</td><td>deploy</td><td>CM</td><td><code>puppet apply -e &quot;class{'simple_grid::deploy::config_master::rollback':}&quot;</code></td></tr>
+<tr><td>final</td><td>deploy</td><td>CM*</td><td><code>puppet apply -e &quot;class{'simple_grid::deploy::config_master::rollback': remove_images =&gt; true}&quot;</code></td></tr>
+<tr><td>deploy</td><td>pre_deploy</td><td>CM</td><td><code>puppet apply -e &quot;class{'simple_grid::pre_deploy::config_master::rollback':}&quot;</code></td></tr>
+<tr><td>pre_deploy</td><td>config</td><td>CM</td><td><code>puppet apply -e &quot;class{'simple_grid::config::config_master::rollback':}&quot;</code></td></tr>
+<tr><td>pre_deploy</td><td>config</td><td>LC**</td><td><code>bolt command run &quot;puppet apply -e \&quot;class{'simple_grid::config::lightweight_component::rollback':}\&quot;&quot; --nodes @/etc/simple_grid/lc</code></td></tr>
+</tbody>
+</table>
+<p><strong>Note</strong> *: Removes HTCondor Docker images from all nodes.</p>
+<p><strong>Note</strong> **: You might almost never have to rollback the LC's to config stage.</p>
+<h2><a class="anchor" aria-hidden="true" id="execute-the-framework"></a><a href="#execute-the-framework" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Execute the Framework</h2>
+<p>Now that we have a compilable site level configuration file and have initialized Puppet and the SIMPLE Framework on all
+of the nodes, we can execute the framework to setup our HTCondor Cluster.</p>
+<ol>
+<li><p>On the CM node, to execute the pre_deploy stage of the framework, run</p>
+<pre><code class="hljs css language-shell script">puppet agent -t
+</code></pre>
+<p><a href="https://asciinema.org/a/296553"><img src="https://asciinema.org/a/296553.svg" alt="asciicast"></a></p>
+<p>If something fails, please rollback the CM to pre_deploy stage based on the commands shown in the section above.
+Here it is again:</p>
+<pre><code class="hljs css language-shell script">puppet apply -e "class{'simple_grid::pre_deploy::config_master::rollback':}"
+</code></pre></li>
+<li><p>On the CM, execute the deploy stage:</p>
+<pre><code class="hljs css language-shell script">puppet agent -t
+</code></pre>
+<p><a href="https://asciinema.org/a/296612"><img src="https://asciinema.org/a/296612.svg" alt="asciicast"></a></p>
+<p><strong>Monitoring Deployment</strong>:</p>
+<ul>
+<li><p>Depending on factors like network speed, size of your cluster etc. it might take a while for the deployment to finish.
+We estimate between 5-20 minutes per container. In the future releases, the deployment time to be significantly cut down.</p></li>
+<li><p>The component repositories are deployed in order of the <strong>execution_ids</strong> that correspond to their entries in the
+site level configuration file. During the pre_deploy_step_1, the images for containers are fetched and then the containers
+are started. During pre_deploy_step_2, the grid services inside the containers get configured. Once all LC hosts have reached the final stage,
+deployment is considered to be completed.</p></li>
+<li><p>You can check the <em>simple_stage</em> fact on all of your LC nodes by using Puppet Bolt as described in the Puppet Bolt section above.</p>
+<pre><code class="hljs css language-shell script">bolt command run 'puppet facts | grep simple_stage' --nodes @/etc/simple_grid/lc
+</code></pre></li>
+<li><p>You can also check the status docker docker images and docker containers on your LC nodes by running the following bolt commands on your CM.</p>
+<pre><code class="hljs css language-shell script">bolt command run 'docker image ls' --nodes @/etc/simple_grid/lc
+</code></pre>
+<pre><code class="hljs css language-shell script">bolt command run 'docker ps -a' --nodes @/etc/simple_grid/lc
+</code></pre>
+<p><a href="https://asciinema.org/a/296613"><img src="https://asciinema.org/a/296613.svg" alt="asciicast"></a></p></li>
+</ul></li>
+</ol>
+<p><strong>Note</strong>: If the deployment fails, please take a look at the deployment message and <a href="../help">share the logs</a> with us, in case they do not make sense.
+You could also try to rollback the deploy stage as and then execute it again with <code>puppet agent -t</code> command. To rollback deploy stage,
+execute the following command on the CM:</p>
+<pre><code class="hljs css language-shell script">puppet apply -e "class{'simple_grid::deploy::config_master::rollback':}"
+</code></pre>
+<p>If everything went well, you now have a production ready HTCondor cluster</p>
+<h2><a class="anchor" aria-hidden="true" id="inspecting-the-simple-cluster"></a><a href="#inspecting-the-simple-cluster" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inspecting the SIMPLE cluster</h2>
+<p>Let's go to our HTCondor-CE LC hosts. In the example cluster, it is simple-lc-node0.cern.ch.
+To take a look at the running HTCondor-CE container, execute:</p>
+<pre><code class="hljs css language-shell script">docker ps -a
+</code></pre>
+<p>To get inside the HTCondorCE container, you can run:</p>
+<pre><code class="hljs css language-shell script">docker exec -it $(docker ps -aq) bash
+</code></pre>
+<p>Once you are in the container:</p>
+<ol>
+<li><p>You can check if condor and condor-ce services are up.</p>
+<pre><code class="hljs css language-shell script">systemctl status condor-ce
+systemctl status condor
+</code></pre></li>
+<li><p>You can take a look at the condor_pool, execute</p>
+<pre><code class="hljs css language-shell script">condor_status
+</code></pre></li>
+<li><p>You can take a look at the queue for the CE</p>
+<pre><code class="hljs css language-shell script">condor_ce_q
+</code></pre></li>
+</ol>
+<p><a href="https://asciinema.org/a/296615"><img src="https://asciinema.org/a/296615.svg" alt="asciicast"></a></p>
+<h2><a class="anchor" aria-hidden="true" id="troubleshooting"></a><a href="#troubleshooting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Troubleshooting</h2>
+<p>If you do not find what you are looking for in this troubleshooting section, please <a href="../help">get in touch</a> with us and
+we will help fix your issue and update this guide.</p>
+<h3><a class="anchor" aria-hidden="true" id="yaml-compiler-fails-when-running-simple-installer-on-cm"></a><a href="#yaml-compiler-fails-when-running-simple-installer-on-cm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>YAML compiler fails when running SIMPLE Installer on CM</h3>
+<p>When you run the SIMPLE Installer on the CM and there are compilation errors, the SIMPLE installer would fail with
+an error like:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">Error</span>: <span class="hljs-string">'bash -c '</span>source /etc/simple_grid/yaml_compiler/.env/bin/activate &amp;&amp; simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml  -o /etc/simple_grid/site_config/augmented_site_level_config_file.yaml -s /etc/simple_grid/site_config/augmented_site_level_config_schema.yaml<span class="hljs-string">''</span> returned <span class="hljs-number">1</span> instead <span class="hljs-keyword">of</span> one <span class="hljs-keyword">of</span> [<span class="hljs-number">0</span>]
+<span class="hljs-attr">Error</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns: change <span class="hljs-keyword">from</span> <span class="hljs-string">'notrun'</span> to [<span class="hljs-string">'0'</span>] failed: <span class="hljs-string">'bash -c '</span>source /etc/simple_grid/yaml_compiler/.env/bin/activate &amp;&amp; simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml  -o /etc/simple_grid/site_config/augmented_site_level_config_file.yaml -s /etc/simple_grid/site_config/augmented_site_level_config_schema.yaml<span class="hljs-string">''</span> returned <span class="hljs-number">1</span> instead <span class="hljs-keyword">of</span> one <span class="hljs-keyword">of</span> [<span class="hljs-number">0</span>]
+</code></pre>
+<p>Yes, we agree with you that this is a very 'developer' oriented message and not a 'user' oriented error message.
+And yes, we are totally aware that the YAML compiler does not print the best error messages and that it can be
+daunting to figure out exactly what went wrong. We are working on simplifying this for you in our upcoming releases.
+In the meantime, please do not hesitate to <a href="../help">get in touch</a> and we can help resolve any errors.</p>
+<p>Below, we discuss some common errors that site admins have encountered in the past</p>
+<h4><a class="anchor" aria-hidden="true" id="indentation-errors"></a><a href="#indentation-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Indentation Errors</h4>
+<p>YAML is indentation sensitive. Therefore, a consistent use of tabs or spaces throughout the document can help avoid
+potential indentation errors.</p>
+<pre><code class="hljs css language-javascript">Notice: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns: ruamel.yaml.parser.ParserError: <span class="hljs-keyword">while</span> parsing a block mapping
+<span class="hljs-attr">Notice</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns:   <span class="hljs-keyword">in</span> <span class="hljs-string">"./.temp/runtime.yaml"</span>, line <span class="hljs-number">1</span>, column <span class="hljs-number">1</span>
+<span class="hljs-attr">Notice</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns: expected &lt;block end&gt;, but found u<span class="hljs-string">'&lt;block mapping start&gt;'</span>
+<span class="hljs-attr">Notice</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns:   <span class="hljs-keyword">in</span> <span class="hljs-string">"./.temp/runtime.yaml"</span>, line <span class="hljs-number">349</span>, column <span class="hljs-number">3</span>
+<span class="hljs-attr">Error</span>: <span class="hljs-string">'bash -c '</span>source /etc/simple_grid/yaml_compiler/.env/bin/activate &amp;&amp; simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml  -o /etc/simple_grid/site_config/augmented_site_level_config_file.yaml -s /etc/simple_grid/site_config/augmented_site_level_config_schema.yaml<span class="hljs-string">''</span> returned <span class="hljs-number">1</span> instead <span class="hljs-keyword">of</span> one <span class="hljs-keyword">of</span> [<span class="hljs-number">0</span>]
+<span class="hljs-attr">Error</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns: change <span class="hljs-keyword">from</span> <span class="hljs-string">'notrun'</span> to [<span class="hljs-string">'0'</span>] failed: <span class="hljs-string">'bash -c '</span>source /etc/simple_grid/yaml_compiler/.env/bin/activate &amp;&amp; simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml  -o /etc/simple_grid/site_config/augmented_site_level_config_file.yaml -s /etc/simple_grid/site_config/augmented_site_level_config_schema.yaml<span class="hljs-string">''</span> returned <span class="hljs-number">1</span> instead <span class="hljs-keyword">of</span> one <span class="hljs-keyword">of</span> [<span class="hljs-number">0</span>]
+</code></pre>
+<p>In the lines directly above the error message, you might see a reference to a particular line number in
+<strong>./temp/runtime.yaml</strong> and a message like: <code>expected &lt;block end&gt;, but found u'&lt;block mapping start&gt;'</code></p>
+<p>This is an indication for potential indentation errors. To identify which line in your site_level_config_file.yaml is
+causing an indentation error in runtime.yaml, which is the output of one of the compiler's phases, we should inspect runtime.yaml</p>
+<pre><code class="hljs css language-shell script">vim /etc/simple_grid/yaml_compiler/.temp/runtime.yaml
+</code></pre>
+<p>Then go to the line number that was mentioned in the errors message, in this case it is <strong>line 349</strong></p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">site:</span>
+   <span class="hljs-attr">name:</span> <span class="hljs-string">'OpenStack SIMPLE dev cluster'</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">latitude:</span> <span class="hljs-number">46.3</span>
+  <span class="hljs-attr">longitude:</span> <span class="hljs-number">6.2</span>
+</code></pre>
+<p>We notice that the name field in the site section has extra indentation than rest of the fields of the site section.
+Aha! Now, we just go back to our site_level_config_file and can fix the indentation and then run the SIMPLE installer again.</p>
+<p><a href="https://asciinema.org/a/296542"><img src="https://asciinema.org/a/296542.svg" alt="asciicast"></a></p>
+<h4><a class="anchor" aria-hidden="true" id="field-variable-not-declared-or-declared-multiple-times"></a><a href="#field-variable-not-declared-or-declared-multiple-times" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Field/Variable not declared or declared multiple times</h4>
+<p>The second most common type of error we have come across is related to redeclaration of fields/variables or missing
+fields/variables. These errors are easier to spot.
+An example of missing field error is:</p>
+<pre><code class="hljs css language-javascript">tice: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns:     None, None, <span class="hljs-string">'found undefined alias %r'</span> % utf8(alias), event.start_mark
+<span class="hljs-attr">Notice</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns: ruamel.yaml.composer.ComposerError: found <span class="hljs-literal">undefined</span> alias <span class="hljs-string">'lightweight_component04_fqdn'</span>
+<span class="hljs-attr">Notice</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns:   <span class="hljs-keyword">in</span> <span class="hljs-string">"./.temp/runtime.yaml"</span>, line <span class="hljs-number">380</span>, column <span class="hljs-number">11</span>
+<span class="hljs-attr">Error</span>: <span class="hljs-string">'bash -c '</span>source /etc/simple_grid/yaml_compiler/.env/bin/activate &amp;&amp; simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml  -o /etc/simple_grid/site_config/augmented_site_level_config_file.yaml -s /etc/simple_grid/site_config/augmented_site_level_config_schema.yaml<span class="hljs-string">''</span> returned <span class="hljs-number">1</span> instead <span class="hljs-keyword">of</span> one <span class="hljs-keyword">of</span> [<span class="hljs-number">0</span>]
+<span class="hljs-attr">Error</span>: <span class="hljs-regexp">/Stage[main]/</span>Simple_grid::Components::Yaml_compiler::Execute/Exec[execute compiler]/returns: change <span class="hljs-keyword">from</span> <span class="hljs-string">'notrun'</span> to [<span class="hljs-string">'0'</span>] failed: <span class="hljs-string">'bash -c '</span>source /etc/simple_grid/yaml_compiler/.env/bin/activate &amp;&amp; simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml  -o /etc/simple_grid/site_config/augmented_site_level_config_file.yaml -s /etc/simple_grid/site_config/augmented_site_level_config_schema.yaml<span class="hljs-string">''</span> returned <span class="hljs-number">1</span> instead <span class="hljs-keyword">of</span> one <span class="hljs-keyword">of</span> [<span class="hljs-number">0</span>]
+</code></pre>
+<p>Right above the error, you will see a line indication the line and column number in ./.temp/runtime.yaml where the compiler failed.
+Right above that line, you will also see a statement like <code>found undefined alias 'lightweight_component04_fqdn'</code>.</p>
+<p>In our example, this already tells us that we have not declared the lightweight_components04_fqdn variable in the site_level_config_file.</p>
+<p>We could go to the line mentioned in the error message for the ./temp/runtime.yaml file to see where we are using this
+variable. In this case, it is in the site_infrastructure section.</p>
+<p>Then, we would fix this error by adding the lightweight_component04_fqdn variable under the global_variables section of
+the site_level_configuration_file.</p>
+<p><a href="https://asciinema.org/a/296543"><img src="https://asciinema.org/a/296543.svg" alt="asciicast"></a></p>
+<h2><a class="anchor" aria-hidden="true" id="known-issues"></a><a href="#known-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Known Issues</h2>
+<h3><a class="anchor" aria-hidden="true" id="some-containers-do-not-start"></a><a href="#some-containers-do-not-start" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Some containers do not start</h3>
+<p>We have noticed that sometimes a few of the containers end up in the 'Created' state.
+This behaviour has been observed since we moved to Docker &gt; 19 and we are working on fixing it in our upcoming releases.
+You can track our progress here: <a href="https://github.com/simple-framework/simple_grid_puppet_module/issues/119">issue_119</a>,
+<a href="https://github.com/simple-framework/simple_grid_puppet_module/issues/144">issue_144</a>.
+For a manual fix, please <a href="../help">get in touch</a> with us.</p>
+<h2><a class="anchor" aria-hidden="true" id="faqs"></a><a href="#faqs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAQs</h2>
+<h3><a class="anchor" aria-hidden="true" id="can-i-add-new-machines-for-instance-wns-after-deploying-a-simple-cluster"></a><a href="#can-i-add-new-machines-for-instance-wns-after-deploying-a-simple-cluster" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Can I add new machines, for instance WNs, after deploying a SIMPLE cluster?</h3>
+<p>Yes, it is possible to add new LC hosts to your existing SIMPLE cluster. The instructions are about 10-15 steps per node
+at present and we are working to release them as a single command in our upcoming releases. Please <a href="../help">contact us</a>
+to learn more about how to do this with the current versions of the puppet module. Please also refer to the following issue
+<a href="https://github.com/simple-framework/simple_grid_puppet_module/issues/130">issue_130</a></p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#quick-introduction">Quick Introduction</a><ul class="toc-headings"><li><a href="#target-audience">Target Audience</a></li><li><a href="#overview-of-the-tutorial">Overview of the Tutorial</a></li><li><a href="#additional-notes">Additional Notes</a></li></ul></li><li><a href="#simple-cluster">SIMPLE cluster</a><ul class="toc-headings"><li><a href="#hardware-specifications">Hardware Specifications</a></li><li><a href="#pre-requisites">Pre-Requisites</a></li><li><a href="#installation-of-puppet">Installation of Puppet</a></li></ul></li><li><a href="#installation-of-central-configuration-manager">Installation of Central Configuration Manager</a></li><li><a href="#preparing-a-site-level-configuration-file">Preparing a site level configuration file.</a><ul class="toc-headings"><li><a href="#schema">schema</a></li><li><a href="#global_variables">global_variables</a></li><li><a href="#runtime_variables">runtime_variables</a></li><li><a href="#site">site</a></li><li><a href="#preferred_tech_stack">preferred_tech_stack</a></li><li><a href="#site_infrastructure">site_infrastructure</a></li><li><a href="#lightweight_components">lightweight_components</a></li><li><a href="#supported_virtual_organizations">supported_virtual_organizations</a></li><li><a href="#voms_config">voms_config</a></li></ul></li><li><a href="#simple-installer-for-cm">Simple Installer for CM</a></li><li><a href="#simple-installer-for-lcs">Simple Installer for LC's</a></li><li><a href="#puppet-certificate-singing-requests-from-lcs-to-cm">Puppet certificate singing requests from LC's to CM</a></li><li><a href="#some-good-to-know-things">Some 'Good to Know' things</a><ul class="toc-headings"><li><a href="#execution-pipeline">Execution Pipeline</a></li><li><a href="#puppet-bolt">Puppet Bolt</a></li><li><a href="#execution-pipeline-traversal">Execution Pipeline Traversal</a></li></ul></li><li><a href="#execute-the-framework">Execute the Framework</a></li><li><a href="#inspecting-the-simple-cluster">Inspecting the SIMPLE cluster</a></li><li><a href="#troubleshooting">Troubleshooting</a><ul class="toc-headings"><li><a href="#yaml-compiler-fails-when-running-simple-installer-on-cm">YAML compiler fails when running SIMPLE Installer on CM</a></li></ul></li><li><a href="#known-issues">Known Issues</a><ul class="toc-headings"><li><a href="#some-containers-do-not-start">Some containers do not start</a></li></ul></li><li><a href="#faqs">FAQs</a><ul class="toc-headings"><li><a href="#can-i-add-new-machines-for-instance-wns-after-deploying-a-simple-cluster">Can I add new machines, for instance WNs, after deploying a SIMPLE cluster?</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/SIMPLE_Logo.png" alt="The SIMPLE Framework" width="66" height="58"/></a><div><h5>Docs</h5><a href="https://twiki.cern.ch/twiki/bin/view/LCG/SIMPLEGridProject">CERN TWiki</a><a href="/docs/en/deployment_guide_htcondor.html">Deployment Guide: HTCondor</a></div><div><h5>Community</h5><a href="https://groups.google.com/forum/#!forum/wlcg-lightweight-sites">Google Groups</a><a href="https://join.slack.com/t/simple-framework/shared_invite/enQtODE4NzY2MTk2OTY0LWZmNjQ0NThmNDRiMzc1YTUxMzU3MTNjOGU4YWRlN2E0MzI5NjQ3ZDNjMDkxYjYzMjdkZGQyNzJjNmMwNzlmNWY" target="_blank" rel="noreferrer noopener">Slack Channel</a><a href="https://e-groups.cern.ch/e-groups/Egroup.do?egroupId=10285344" target="_blank" rel="noreferrer noopener">CERN E-Groups</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/simple-framework">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="http://wlcg.web.cern.ch/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/wlcg-logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 CERN</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
