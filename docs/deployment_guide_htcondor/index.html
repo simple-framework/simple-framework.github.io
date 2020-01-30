@@ -54,7 +54,7 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SIMPLE Framework Deployment Guide: HTCondor</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="quick-introduction"></a><a href="#quick-introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Introduction</h2>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/simple-framework/simple_framework_website/edit/master/docs/htcondor_pool_tutorial.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">SIMPLE Framework Deployment Guide: HTCondor</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="quick-introduction"></a><a href="#quick-introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Introduction</h2>
 <p>This tutorial describes setting up a production ready <a href="https://research.cs.wisc.edu/htcondor/">HTCondor</a> cluster using the SIMPLE Framework.</p>
 <h3><a class="anchor" aria-hidden="true" id="target-audience"></a><a href="#target-audience" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Target Audience</h3>
 <p>The target audience for this tutorial are WLCG Site admins who wish to :</p>
@@ -223,8 +223,8 @@ yum <span class="hljs-keyword">install</span> puppet-<span class="hljs-keyword">
 <p><a href="https://asciinema.org/a/296405"><img src="https://asciinema.org/a/296405.svg" alt="asciicast"></a></p>
 <h2><a class="anchor" aria-hidden="true" id="installation-of-central-configuration-manager"></a><a href="#installation-of-central-configuration-manager" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation of Central Configuration Manager</h2>
 <p>The Central Configuration Manager or CCM in SIMPLE Framework's terminology is a framework component that manages
-the configuration and deployment of your SIMPLE Cluster. In case of puppet the CCM is the <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a>
-On the CM and all of the LC nodes, you will not install the latest <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a> from Puppet Forge
+the configuration and deployment of your SIMPLE Cluster. In case of puppet the CCM is the <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a>.
+On the CM and all of the LC nodes, you will now install the latest <a href="https://forge.puppet.com/maany/simple_grid">simple_grid_puppet_module</a> from Puppet Forge
 using the command below:</p>
 <pre><code class="hljs css language-shell script">puppet module install maany-simple_grid
 </code></pre>
@@ -479,13 +479,14 @@ would have the following format:</p>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="runtime_variables"></a><a href="#runtime_variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>runtime_variables</h3>
 <p>The runtime variables are an advanced feature of the framework. They enable grid experts who add support for grid services through SIMPLE
-to request some additional information information from site admins that is required for configuring the grid services.</p>
+to request some additional information from site admins that is required for configuring the grid services.</p>
 <p>It is necessary to provide a value to these variables to ensure that the containerized services can get configured properly.
 For the HTCondor SIMPLE cluster, we need two runtime_variables, namely,</p>
 <ul>
 <li><strong>htcondor_ce_runtime_var_ce_host</strong> : The FQDN of the LC node where you wish to deploy HTCondorCE</li>
 <li><strong>htcondor_batch_runtime_var_batch_host</strong>: The FQDN of LC node where you wish to deploy HTCondorBatch</li>
 </ul>
+<p><strong>Note</strong>: In runtime variables, the values of global_variables cannot be used, at present.</p>
 <p>In our example, these sections look as follows:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">htcondor_ce_runtime_variables:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_ce_runtime_var_ce_host</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
