@@ -120,7 +120,7 @@ It is difficult to predict the performance of the system otherwise.</p>
 </thead>
 <tbody>
 <tr><td>CM</td><td>N/A</td><td>2</td><td>2*#cores (puppetserver)</td><td>1</td><td>12(image) + 1(puppetserver)</td></tr>
-<tr><td>LC</td><td>HTCondor CE</td><td>1</td><td>2(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
+<tr><td>LC</td><td>HTCondor CE</td><td>1</td><td>2(swarm) + 0.5(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
 <tr><td>LC</td><td>HTCondor Batch</td><td>1</td><td>2(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
 <tr><td>LC</td><td>HTCondor Worker</td><td>1</td><td>2(swarm) + 2*#cores(HTCondor) + 1 (misc)</td><td>3*#cores</td><td>3(docker) + 5(image) + 10*#cores(HTCondor)</td></tr>
 </tbody>
@@ -132,7 +132,7 @@ It is difficult to predict the performance of the system otherwise.</p>
 </thead>
 <tbody>
 <tr><td>CM</td><td>N/A</td><td>4</td><td>2*#cores (puppetserver) + 2(misc)</td><td>2</td><td>12(image) + 2(puppetserver)</td></tr>
-<tr><td>LC</td><td>HTCondor CE</td><td>1</td><td>8(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
+<tr><td>LC</td><td>HTCondor CE</td><td>1</td><td>8(swarm) + 0.5(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
 <tr><td>LC</td><td>HTCondor Batch</td><td>1</td><td>8(swarm) + 0.1(HTCondor) + 1 (misc)</td><td>1</td><td>3(docker) + 5(image)</td></tr>
 <tr><td>LC</td><td>HTCondor Worker</td><td>8</td><td>8(swarm) + 2*#cores(HTCondor) + 1 (misc)</td><td>3*#cores</td><td>3(docker) + 5(image) + 10*#cores(HTCondor)</td></tr>
 </tbody>
@@ -175,6 +175,9 @@ chmod 644 /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch/hostcert.pe
 </code></pre>
 <p><a href="https://asciinema.org/a/296397"><img src="https://asciinema.org/a/296397.svg" alt="asciicast"></a></p>
 <p>Your host_certificates directly would finally resemble the following (continuing from our example):</p>
+<pre><code class="hljs css language-shell script">ls -la /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch/
+</code></pre>
+<p>The output for which should be:</p>
 <pre><code class="hljs css language-shell session"><span class="hljs-meta">$</span><span class="bash">ls -la /etc/simple_grid/host_certificates/simple-lc-node0.cern.ch/</span>
 total 8
 drw-r--r-- 2 root root   45 Jan 23 15:12 .
@@ -196,8 +199,10 @@ If you prefer to have SELinux enabled, please <a href="../help">get in touch</a>
 required by Docker and Puppet to function correctly. Otherwise, edit /etc/selinux/config and set SELINUX=disabled.
 Then, reboot your machine and make sure that output of the command ```sestatus`` is disabled.</p>
 <p>For instance, in our example, on one of the LC nodes:</p>
-<pre><code class="hljs css language-shell script">[root@simple-lc-node0 ~]# sestatus
-SELinux status:                 disabled
+<pre><code class="hljs css language-shell script">sestatus
+</code></pre>
+<p>The output should be:</p>
+<pre><code class="hljs"><span class="hljs-keyword">SELinux </span>status:                 disabled
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="network-and-dns-settings"></a><a href="#network-and-dns-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network and DNS settings</h4>
 <p>Please check the DNS settings and /etc/hosts files to make sure all of the nodes in the SIMPLE cluster can reach
@@ -212,12 +217,14 @@ yum -y install puppetserver puppet-agent
 </code></pre></li>
 <li><p>Install puppet-agent (Puppet 5) on all of your <strong>LC nodes</strong>. For CC7, the commands are:</p>
 <pre><code class="hljs">rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-<span class="hljs-keyword">release</span>-el<span class="hljs-number">-7.</span>noarch.rpm
-yum <span class="hljs-keyword">install</span> puppet-<span class="hljs-keyword">agent</span>
+yum -y <span class="hljs-keyword">install</span> puppet-<span class="hljs-keyword">agent</span>
 </code></pre></li>
 <li><p>Verify that puppet is installed. For instance,</p>
-<pre><code class="hljs css language-shell script">[root@simple-lc-node0 ~]# puppet --version
- 2020-01-23 14:41:11.130354 WARN  puppetlabs.facter - locale environment variables were bad; continuing with LANG=C LC_ALL=C
- 5.5.17
+<pre><code class="hljs css language-shell script"> puppet --version
+</code></pre>
+<p>The output should be something similar to:</p>
+<pre><code class="hljs css language-shell script">  2020-01-23 14:41:11.130354 WARN  puppetlabs.facter - locale environment variables were bad; continuing with LANG=C LC_ALL=C
+  5.5.17
 </code></pre></li>
 </ol>
 <p><a href="https://asciinema.org/a/296405"><img src="https://asciinema.org/a/296405.svg" alt="asciicast"></a></p>
@@ -240,20 +247,23 @@ Generally 100-200 lines are enough to deploy very large clusters.
 The discussion of these features(variable declaration, splitting of configuration into smaller config files, script injection,
 injection of additional config variables for grid services, ...) is out of scope for this tutorial. We are working on a detailed
 guide on writing site level configuration files.</p>
+<p><strong>Note</strong>: The CM node is not specified in the site level configuration file. The site level configuration
+file is hosted on the CM node and specifies what grid services should be deployed on the LC nodes, which are explicitly
+specified in the file.</p>
 <p>Here is what the site level configuration file for our example cluster looks like:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-comment">### url of schema</span>
 <span class="hljs-attr">schema:</span>  <span class="hljs-string">"https://raw.githubusercontent.com/WLCG-Lightweight-Sites/simple_grid_site_repo/master/simple_base_schema.yaml"</span>
 
 <span class="hljs-comment">### Variable declaration:</span>
 <span class="hljs-attr">global_variables:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.118</span><span class="hljs-number">.59</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.112</span><span class="hljs-number">.73</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc-node2.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.78</span><span class="hljs-number">.0</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_fqdn</span> <span class="hljs-string">simple-lc-node3.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_host_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.118</span><span class="hljs-number">.59</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_host_fqdn</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.112</span><span class="hljs-number">.73</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_host_fqdn</span> <span class="hljs-string">simple-lc-node2.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.78</span><span class="hljs-number">.0</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_host_fqdn</span> <span class="hljs-string">simple-lc-node3.cern.ch</span>
 
 <span class="hljs-attr">htcondor_ce_runtime_variables:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_ce_runtime_var_ce_host</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
@@ -263,15 +273,15 @@ guide on writing site level configuration files.</p>
 
 <span class="hljs-attr">site:</span>
   <span class="hljs-attr">name:</span> <span class="hljs-string">'OpenStack SIMPLE dev cluster'</span>
-  <span class="hljs-attr">email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
   <span class="hljs-attr">latitude:</span> <span class="hljs-number">46.3</span>
   <span class="hljs-attr">longitude:</span> <span class="hljs-number">6.2</span>
   <span class="hljs-attr">location:</span> <span class="hljs-string">CERN</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">'CERN WLCG Grid by SIMPLE at CERN Openstack'</span>
   <span class="hljs-attr">website:</span> <span class="hljs-string">'https://home.cern'</span>
   <span class="hljs-attr">support_website:</span> <span class="hljs-string">'https://groups.google.com/forum/#!forum/wlcg-lightweight-sites'</span>
-  <span class="hljs-attr">support_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
-  <span class="hljs-attr">security_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">support_email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
+  <span class="hljs-attr">security_email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
   <span class="hljs-attr">grid:</span> <span class="hljs-string">'wlcg'</span> <span class="hljs-comment">#site_other_grid: str(), wlcg, egi,osg</span>
   <span class="hljs-attr">tier:</span> <span class="hljs-number">3</span>
   <span class="hljs-attr">bdii_host:</span> <span class="hljs-string">bdii.cern.ch</span>
@@ -288,14 +298,14 @@ guide on writing site level configuration files.</p>
   <span class="hljs-attr">container:</span> <span class="hljs-string">docker</span>
 
 <span class="hljs-attr">site_infrastructure:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component01_ip_address</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component02_ip_address</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component03_ip_address</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component04_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*ce_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*ce_host_ip</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*batch_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*batch_host_ip</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*wn1_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*wn1_host_ip</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*wn2_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*wn2_host_ip</span>
 
 
 
@@ -310,14 +320,22 @@ guide on writing site level configuration files.</p>
       <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
       <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
     <span class="hljs-attr">deploy:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*ce_host_fqdn</span>
         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
     <span class="hljs-attr">preferred_tech_stack:</span>
       <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
     <span class="hljs-attr">config:</span>
       <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
     <span class="hljs-attr">supplemental_config:</span>
-      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+      <span class="hljs-comment">#Example of adding HTCondorCE configuration knobs through the site level configuration file.</span>
+      <span class="hljs-attr">'htcondor-ce':</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">"MYVAR=VALUE"</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">ANOTHER_CONDOR_KNOB:</span> <span class="hljs-string">VALUE</span>
+      <span class="hljs-attr">'htcondor':</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">"MYVAR=VALUE"</span> <span class="hljs-comment">#Example of adding HTCondor configuration knobs through the site level configuration file.</span>
+      <span class="hljs-string">'/etc/hosts'</span><span class="hljs-string">:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">"10.0.1.100 apel-host.mysite"</span>
+
   <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">batch_system</span>
     <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Batch</span>
     <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_batch"</span>
@@ -328,14 +346,18 @@ guide on writing site level configuration files.</p>
       <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
       <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
     <span class="hljs-attr">deploy:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*batch_host_fqdn</span>
         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
     <span class="hljs-attr">preferred_tech_stack:</span>
       <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
     <span class="hljs-attr">config:</span>
       <span class="hljs-attr">placeholder_param:</span> <span class="hljs-string">some_value</span>
     <span class="hljs-attr">supplemental_config:</span>
-      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+      <span class="hljs-attr">'htcondor':</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">"MYVAR=VALUE"</span> <span class="hljs-comment">#Example of adding HTCondor configuration knobs through the site level configuration file.</span>
+      <span class="hljs-string">'/etc/hosts'</span><span class="hljs-string">:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">"10.0.1.100 apel-host.mysite"</span>
+
   <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">worker_node</span>
     <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Worker</span>
     <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_worker"</span>
@@ -346,17 +368,20 @@ guide on writing site level configuration files.</p>
       <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
       <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
     <span class="hljs-attr">deploy:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*wn1_host_fqdn</span>
         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*wn2_host_fqdn</span>
         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
     <span class="hljs-attr">preferred_tech_stack:</span>
       <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
     <span class="hljs-attr">config:</span>
       <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
       <span class="hljs-attr">num_slots:</span> <span class="hljs-number">4</span>
+    <span class="hljs-comment"># Creating or appending content to new/existing files inside containers through supplemental_config section</span>
     <span class="hljs-attr">supplemental_config:</span>
-      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+      <span class="hljs-string">"/some_path_in_container"</span><span class="hljs-string">:</span> 
+        <span class="hljs-bullet">-</span> <span class="hljs-string">"contents to be appended"</span> 
+
 <span class="hljs-attr">supported_virtual_organizations:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_alice</span>
   <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_vo_dteam</span>
@@ -374,8 +399,11 @@ guide on writing site level configuration files.</p>
     <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_alice</span>
     <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
   <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam'</span>
+    <span class="hljs-comment"># An example of overriding default variable's initial_uid field. The default variables is declared at:</span>
+    <span class="hljs-comment"># https://github.com/simple-framework/simple_grid_site_repo/blob/master/site_level_configuration_defaults.yaml</span>
     <span class="hljs-attr">pool_accounts:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+        <span class="hljs-attr">initial_uid:</span> <span class="hljs-number">20020</span>
     <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_dteam</span>
   <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam/ROLE=lcgadmin'</span>
     <span class="hljs-attr">pool_accounts:</span>
@@ -411,10 +439,11 @@ for your installation. The sample HTCondor site_level_config_file.yaml is availa
 <strong>/etc/simple_grid/site_config/site_level_config_file.yaml</strong></p>
 <pre><code class="hljs css language-shell script">puppet apply -e 'class{"simple_grid::install::config_master::simple_installer::create_sample_site_level_config_file":}'
 </code></pre>
-<p><a href="https://asciinema.org/a/296526"><img src="https://asciinema.org/a/296526.svg" alt="asciicast"></a>
-Use any text editor to open the site level configuration file:</p>
+<p><a href="https://asciinema.org/a/296526"><img src="https://asciinema.org/a/296526.svg" alt="asciicast"></a></p>
+<p>In case you decide to not use the puppet command above, please create the following dir:</p>
 <pre><code class="hljs css language-shell script">mkdir -p /etc/simple_grid/site_config
-vim /etc/simple_grid/site_config/site_level_config_file.yaml
+</code></pre>
+<pre><code class="hljs css language-shell script">vim /etc/simple_grid/site_config/site_level_config_file.yaml
 </code></pre>
 <p>You will see that the configuration file has the following distinct sections:</p>
 <ol>
@@ -439,13 +468,14 @@ To declare a new variable involves add an entry under the global variables secti
 In the sample site level configuration file, you will see that we already have some variables declared:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-comment">### Variable declaration:</span>
 <span class="hljs-attr">global_variables:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
-
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.190</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_fqdn</span> <span class="hljs-string">simple-lc04.cern.ch</span>
 </code></pre>
 <p>To add a new variable, you can just create a new entry under the global_variables section. The new entry
 would have the following format:</p>
@@ -454,28 +484,30 @@ would have the following format:</p>
   <span class="hljs-bullet">-</span> <span class="hljs-string">..</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;new_variable_name</span> <span class="hljs-string">value_of_the_variable</span>
 </code></pre>
-<p>Let's create 2 new variables called condor_ce_ip_address and condor_ce_fqdn.</p>
+<p>Let's create 2 new variables called htcondor_wn3_host_ip_address and htcondor_wn3_host_fqdn.</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">global_variables:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;condor_ce_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;condor_ce_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.104</span><span class="hljs-number">.25</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.190</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_fqdn</span> <span class="hljs-string">simple-lc04.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_wn3_host_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_wn3_host_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
 </code></pre>
 <p>We recommend creating a variable for the fqdn and ip address of each LC node and then re-using them throughout the site level configuration wherever required.</p>
 <p>For our example cluster, the global_variables section will look as follows:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">global_variables:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component01_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.118</span><span class="hljs-number">.59</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component02_fqdn</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.112</span><span class="hljs-number">.73</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component03_fqdn</span> <span class="hljs-string">simple-lc-node2.cern.ch</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_ip_address</span> <span class="hljs-number">188.185</span><span class="hljs-number">.78</span><span class="hljs-number">.0</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;lightweight_component04_fqdn</span> <span class="hljs-string">simple-lc-node3.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.115</span><span class="hljs-number">.228</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_host_fqdn</span> <span class="hljs-string">simple-lc-node0.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.118</span><span class="hljs-number">.59</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_host_fqdn</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.112</span><span class="hljs-number">.73</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_host_fqdn</span> <span class="hljs-string">simple-lc-node2.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_host_ip</span> <span class="hljs-number">188.185</span><span class="hljs-number">.78</span><span class="hljs-number">.0</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_host_fqdn</span> <span class="hljs-string">simple-lc-node3.cern.ch</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="runtime_variables"></a><a href="#runtime_variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>runtime_variables</h3>
 <p>The runtime variables are an advanced feature of the framework. They enable grid experts who add support for grid services through SIMPLE
@@ -494,9 +526,9 @@ For the HTCondor SIMPLE cluster, we need two runtime_variables, namely,</p>
 <span class="hljs-attr">htcondor_batch_runtime_variables:</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;htcondor_runtime_var_batch_host</span> <span class="hljs-string">simple-lc-node1.cern.ch</span>
 </code></pre>
-<p>Update your site level configuration file to include the <em>htcondor_ce_runtime_variables</em> section and assign
+<p>Modify your site level configuration file to add/update the <em>htcondor_ce_runtime_variables</em> section and assign
 the <em>&amp;htcondor_ce_runtime_var_ce_host</em> variable to point to your HTCondorCE LC host.</p>
-<p>Then add the <em>htcondor_batch_runtime_variables</em> section to your site level configuration and update the value
+<p>Then add/update the <em>htcondor_batch_runtime_variables</em> section in your site level configuration and assign the value
 of <em>&amp;htcondor_runtime_var_batch_host</em> to point to your HTCondor Batch LC host.</p>
 <h3><a class="anchor" aria-hidden="true" id="site"></a><a href="#site" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>site</h3>
 <p>The site section contains generic information about your site like name, location, website, timezone, ... .</p>
@@ -508,15 +540,15 @@ field, as shown.</p>
 <p>For the example cluster, the site section looks as follows:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">site:</span>
   <span class="hljs-attr">name:</span> <span class="hljs-string">'OpenStack SIMPLE dev cluster'</span>
-  <span class="hljs-attr">email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
   <span class="hljs-attr">latitude:</span> <span class="hljs-number">46.3</span>
   <span class="hljs-attr">longitude:</span> <span class="hljs-number">6.2</span>
   <span class="hljs-attr">location:</span> <span class="hljs-string">CERN,</span> <span class="hljs-string">Geneva,</span> <span class="hljs-string">Switzerland</span>
   <span class="hljs-attr">description:</span> <span class="hljs-string">'CERN HTCondor cluster by SIMPLE @ CERN Openstack'</span>
   <span class="hljs-attr">website:</span> <span class="hljs-string">'https://home.cern'</span>
   <span class="hljs-attr">support_website:</span> <span class="hljs-string">'https://groups.google.com/forum/#!forum/wlcg-lightweight-sites'</span>
-  <span class="hljs-attr">support_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
-  <span class="hljs-attr">security_email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">support_email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
+  <span class="hljs-attr">security_email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
   <span class="hljs-attr">grid:</span> <span class="hljs-string">'wlcg'</span>
   <span class="hljs-attr">tier:</span> <span class="hljs-number">3</span>
   <span class="hljs-attr">bdii_host:</span> <span class="hljs-string">bdii.cern.ch</span>
@@ -550,20 +582,20 @@ we could directly use the values of these variables.
 Let's say lightweight_component01_fqdn corresponds to simple-lc-node0.cern.ch, while lightweight_component01_ip_address
 corresponds to 188.184.104.25, then the above section can be re-written as:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">site_infrastructure:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component01_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*ce_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*ce_host_ip</span>
 </code></pre>
 <p>For our example cluster, where we have already declared variables for the IP Addresses and FQDNs for each of our LC hosts,
 this section looks as follows:</p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">site_infrastructure:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component01_ip_address</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component02_ip_address</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component03_ip_address</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
-    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*lightweight_component04_ip_address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*ce_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*ce_host_ip</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*batch_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*batch_host_ip</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*wn1_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*wn1_host_ip</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">fqdn:</span> <span class="hljs-meta">*wn2_host_fqdn</span>
+    <span class="hljs-attr">ip_address:</span> <span class="hljs-meta">*wn2_host_ip</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="lightweight_components"></a><a href="#lightweight_components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>lightweight_components</h3>
 <p>In this section you tell the framework about the configuration of the grid services that should be deployed on the LC hosts,
@@ -571,64 +603,79 @@ specified in the site_infrastructure section. For the SIMPLE HTCondor cluster, t
 HTCondor-Batch and HTCondor-Workers.</p>
 <p>The following YAML code describes our example HTCondor cluster. You can use it as-is for your own SIMPLE HTCondor cluster
 after applying the modifications mentioned below:</p>
-<pre><code class="hljs css language-yaml"><span class="hljs-attr">lightweight_components:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">compute_element</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-CE</span>
-    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_ce"</span>
-    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
-    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">0</span>
-    <span class="hljs-attr">lifecycle_hooks:</span>
-      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
-      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
-      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
-    <span class="hljs-attr">deploy:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component01_fqdn</span>
-        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
-    <span class="hljs-attr">preferred_tech_stack:</span>
-      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
-    <span class="hljs-attr">config:</span>
-      <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
-    <span class="hljs-attr">supplemental_config:</span>
-      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">batch_system</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Batch</span>
-    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/andria009/simple_htcondor_batch"</span>
-    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
-    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">1</span>
-    <span class="hljs-attr">lifecycle_hooks:</span>
-      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
-      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
-      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
-    <span class="hljs-attr">deploy:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component02_fqdn</span>
-        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
-    <span class="hljs-attr">preferred_tech_stack:</span>
-      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
-    <span class="hljs-attr">config:</span>
-      <span class="hljs-attr">placeholder_param:</span> <span class="hljs-string">some_value</span>
-    <span class="hljs-attr">supplemental_config:</span>
-      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">worker_node</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Worker</span>
-    <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_worker"</span>
-    <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
-    <span class="hljs-attr">execution_id:</span> <span class="hljs-number">2</span>
-    <span class="hljs-attr">lifecycle_hooks:</span>
-      <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
-      <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
-      <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
-    <span class="hljs-attr">deploy:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component03_fqdn</span>
-        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>      
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*lightweight_component04_fqdn</span>
-        <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>      
-    <span class="hljs-attr">preferred_tech_stack:</span>
-      <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
-    <span class="hljs-attr">config:</span>
-      <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
-      <span class="hljs-attr">num_slots:</span> <span class="hljs-number">4</span>
-    <span class="hljs-attr">supplemental_config:</span>
-      <span class="hljs-attr">some_param:</span> <span class="hljs-string">some_val</span>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">llightweight_components:</span>
+   <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">compute_element</span>
+     <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-CE</span>
+     <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_ce"</span>
+     <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+     <span class="hljs-attr">execution_id:</span> <span class="hljs-number">0</span>
+     <span class="hljs-attr">lifecycle_hooks:</span>
+       <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+       <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+       <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+     <span class="hljs-attr">deploy:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*ce_host_fqdn</span>
+         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+     <span class="hljs-attr">preferred_tech_stack:</span>
+       <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+     <span class="hljs-attr">config:</span>
+       <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
+     <span class="hljs-attr">supplemental_config:</span>
+       <span class="hljs-comment">#Example of adding HTCondorCE configuration knobs through the site level configuration file.</span>
+       <span class="hljs-attr">'htcondor-ce':</span>
+         <span class="hljs-bullet">-</span> <span class="hljs-string">"MYVAR=VALUE"</span>
+         <span class="hljs-bullet">-</span> <span class="hljs-attr">ANOTHER_CONDOR_KNOB:</span> <span class="hljs-string">VALUE</span>
+       <span class="hljs-attr">'htcondor':</span>
+         <span class="hljs-bullet">-</span> <span class="hljs-string">"MYVAR=VALUE"</span> <span class="hljs-comment">#Example of adding HTCondor configuration knobs through the site level configuration file.</span>
+       <span class="hljs-string">'/etc/hosts'</span><span class="hljs-string">:</span>
+         <span class="hljs-bullet">-</span> <span class="hljs-string">"10.0.1.100 apel-host.mysite"</span>
+ 
+   <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">batch_system</span>
+     <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Batch</span>
+     <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_batch"</span>
+     <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+     <span class="hljs-attr">execution_id:</span> <span class="hljs-number">1</span>
+     <span class="hljs-attr">lifecycle_hooks:</span>
+       <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+       <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+       <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+     <span class="hljs-attr">deploy:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*batch_host_fqdn</span>
+         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+     <span class="hljs-attr">preferred_tech_stack:</span>
+       <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+     <span class="hljs-attr">config:</span>
+       <span class="hljs-attr">placeholder_param:</span> <span class="hljs-string">some_value</span>
+     <span class="hljs-attr">supplemental_config:</span>
+       <span class="hljs-attr">'htcondor':</span>
+         <span class="hljs-bullet">-</span> <span class="hljs-string">"MYVAR=VALUE"</span> <span class="hljs-comment">#Example of adding HTCondor configuration knobs through the site level configuration file.</span>
+       <span class="hljs-string">'/etc/hosts'</span><span class="hljs-string">:</span>
+         <span class="hljs-bullet">-</span> <span class="hljs-string">"10.0.1.100 apel-host.mysite"</span>
+ 
+   <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">worker_node</span>
+     <span class="hljs-attr">name:</span> <span class="hljs-string">HTCondor-Worker</span>
+     <span class="hljs-attr">repository_url:</span> <span class="hljs-string">"https://github.com/simple-framework/simple_htcondor_worker"</span>
+     <span class="hljs-attr">repository_revision:</span> <span class="hljs-string">"master"</span>
+     <span class="hljs-attr">execution_id:</span> <span class="hljs-number">2</span>
+     <span class="hljs-attr">lifecycle_hooks:</span>
+       <span class="hljs-attr">pre_config:</span> <span class="hljs-string">[]</span>
+       <span class="hljs-attr">pre_init:</span> <span class="hljs-string">[]</span>
+       <span class="hljs-attr">post_init:</span> <span class="hljs-string">[]</span>
+     <span class="hljs-attr">deploy:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*wn1_host_fqdn</span>
+         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">node:</span> <span class="hljs-meta">*wn2_host_fqdn</span>
+         <span class="hljs-attr">container_count:</span> <span class="hljs-number">1</span>
+     <span class="hljs-attr">preferred_tech_stack:</span>
+       <span class="hljs-attr">level_2_configuration:</span> <span class="hljs-string">sh</span>
+     <span class="hljs-attr">config:</span>
+       <span class="hljs-attr">condor_host_execution_id:</span> <span class="hljs-number">1</span>
+       <span class="hljs-attr">num_slots:</span> <span class="hljs-number">4</span>
+     <span class="hljs-comment"># Creating or appending content to new/existing files inside containers through supplemental_config section</span>
+     <span class="hljs-attr">supplemental_config:</span>
+       <span class="hljs-string">"/some_path_in_container"</span><span class="hljs-string">:</span> 
+         <span class="hljs-bullet">-</span> <span class="hljs-string">"contents to be appended"</span> 
+
 </code></pre>
 <p>For each of HTCondor-CE, HTCondor-Batch and HTCondor-Worker, please modify the <strong>node field</strong> of the <strong>deploy sections</strong> to point to
 the corresponding LC node/s in you cluster.</p>
@@ -650,8 +697,10 @@ inside of the containers. At present, the only supported configuration technolog
 on your infrastructure.</p></li>
 <li><p><strong>repository_revision</strong>: The branch/tag on GitHub determining the  component repository version.</p></li>
 <li><p><strong>config</strong>: This section is where you provide values for variables mentioned in the config-schema.yaml files present
-at the root of the corresponding component repositories. For HTCondor-CE, the config-schema.yaml is present
-<a href="https://github.com/simple-framework/simple_htcondor_ce/blob/master/config-schema.yaml">here</a>.</p></li>
+at the root of the corresponding component repositories. You can access the config-schema.yaml files for
+<a href="https://github.com/simple-framework/simple_htcondor_ce/blob/master/config-schema.yaml">HTCondor-CE</a>,
+<a href="https://github.com/simple-framework/simple_htcondor_batch/blob/master/config-schema.yaml">HTCondor-Batch</a> and
+<a href="https://github.com/simple-framework/simple_htcondor_worker/blob/master/config-schema.yaml">HTCondor-Worker</a>.</p></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="supported_virtual_organizations"></a><a href="#supported_virtual_organizations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>supported_virtual_organizations</h3>
 <p>Here you tell the framework about the VOs that your site supports. The framework provides <strong>default VO Configuration
@@ -684,8 +733,11 @@ For our example cluster, this section looks as follows:</p>
     <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_alice</span>
     <span class="hljs-attr">comment:</span> <span class="hljs-string">sgm</span>
   <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam'</span>
+    <span class="hljs-comment"># An example of overriding default variable's initial_uid field. The default variables is declared at:</span>
+    <span class="hljs-comment"># https://github.com/simple-framework/simple_grid_site_repo/blob/master/site_level_configuration_defaults.yaml</span>
     <span class="hljs-attr">pool_accounts:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*default_pool_accounts_dteam</span>
+        <span class="hljs-attr">initial_uid:</span> <span class="hljs-number">20020</span>
     <span class="hljs-attr">vo:</span> <span class="hljs-meta">*default_vo_dteam</span>
   <span class="hljs-bullet">-</span> <span class="hljs-attr">voms_fqan:</span> <span class="hljs-string">'/dteam/ROLE=lcgadmin'</span>
     <span class="hljs-attr">pool_accounts:</span>
@@ -712,11 +764,13 @@ The default variables for all four LHC VOs, DTeam and Ops that you can use can b
 the deployment process.</p>
 <p>While are working on a web-based compiler to significantly simplify writing of the site level configuration files, you can
 use the commands shown below to locally test the compilation of your site level configuration file in the meantime.</p>
-<pre><code class="hljs css language-shell script">mkdir -p simple_grid_yaml_compiler/.temp
+<pre><code class="hljs css language-shell script">cd ~
+mkdir -p simple_grid_yaml_compiler/.temp
 cd simple_grid_yaml_compiler
+yum install -y python-pip
+pip install --upgrade pip
 pip install simple-grid-yaml-compiler
 simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml -o output.yaml -s schema.yaml
-
 </code></pre>
 <p>If the compiler runs without any errors, you can proceed with the deployment. If there are errors, please take a look
 at the troubleshooting guide towards the end of this tutorial or <a href="../help">get in touch</a> with us for further assistance.</p>
@@ -778,7 +832,7 @@ LC nodes.</p>
 <p>After the config stage, you can use Puppet Bolt on your CM to directly execute shell commands and scripts on some or
 all of your LCs.
 Let's say we wish to check the stage for our nodes, then the bolt command would look as follows:</p>
-<pre><code class="hljs css language-shell script">bolt command run 'puppet facts| grep simple_stage' --nodes simple-lc-node0.cern.ch, simple-lc-node1.cern.ch, simple-lc-node2.cern.ch, simple-lc-node3.cern.ch
+<pre><code class="hljs css language-shell script">bolt command run 'puppet facts| grep simple_stage' -t simple-lc-node0.cern.ch,simple-lc-node1.cern.ch,simple-lc-node2.cern.ch,simple-lc-node3.cern.ch
 </code></pre>
 <p>This command can be further simplified by creating a text file called, let's say, lc and then adding, one per line, the FQDN of the node
 on which we wish to execute a shell command.
@@ -792,7 +846,7 @@ simple-lc-node2.cern.ch
 simple-lc-node3.cern.ch
 </code></pre>
 <p>Now, the above bolt command can be reduced to:</p>
-<pre><code class="hljs css language-shell script">bolt command run 'puppet facts| grep simple_stage' --nodes @/etc/simple_grid/lc
+<pre><code class="hljs css language-shell script">bolt command run 'puppet facts| grep simple_stage' -t @/etc/simple_grid/lc
 </code></pre>
 <p><a href="https://asciinema.org/a/296551"><img src="https://asciinema.org/a/296551.svg" alt="asciicast"></a></p>
 <h3><a class="anchor" aria-hidden="true" id="execution-pipeline-traversal"></a><a href="#execution-pipeline-traversal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Execution Pipeline Traversal</h3>
@@ -824,7 +878,7 @@ and then proceed with the execution pipeline. The table below describes the roll
 <tr><td>final</td><td>deploy</td><td>CM*</td><td><code>puppet apply -e &quot;class{'simple_grid::deploy::config_master::rollback': remove_images =&gt; true}&quot;</code></td></tr>
 <tr><td>deploy</td><td>pre_deploy</td><td>CM</td><td><code>puppet apply -e &quot;class{'simple_grid::pre_deploy::config_master::rollback':}&quot;</code></td></tr>
 <tr><td>pre_deploy</td><td>config</td><td>CM</td><td><code>puppet apply -e &quot;class{'simple_grid::config::config_master::rollback':}&quot;</code></td></tr>
-<tr><td>pre_deploy</td><td>config</td><td>LC**</td><td><code>bolt command run &quot;puppet apply -e \&quot;class{'simple_grid::config::lightweight_component::rollback':}\&quot;&quot; --nodes @/etc/simple_grid/lc</code></td></tr>
+<tr><td>pre_deploy</td><td>config</td><td>LC**</td><td><code>bolt command run &quot;puppet apply -e \&quot;class{'simple_grid::config::lightweight_component::rollback':}\&quot;&quot; -t @/etc/simple_grid/lc</code></td></tr>
 </tbody>
 </table>
 <p><strong>Note</strong> *: Removes HTCondor Docker images from all nodes.</p>
@@ -854,12 +908,12 @@ site level configuration file. During the pre_deploy_step_1, the images for cont
 are started. During pre_deploy_step_2, the grid services inside the containers get configured. Once all LC hosts have reached the final stage,
 deployment is considered to be completed.</p></li>
 <li><p>You can check the <em>simple_stage</em> fact on all of your LC nodes by using Puppet Bolt as described in the Puppet Bolt section above.</p>
-<pre><code class="hljs css language-shell script">bolt command run 'puppet facts | grep simple_stage' --nodes @/etc/simple_grid/lc
+<pre><code class="hljs css language-shell script">bolt command run 'puppet facts | grep simple_stage' -t @/etc/simple_grid/lc
 </code></pre></li>
 <li><p>You can also check the status docker docker images and docker containers on your LC nodes by running the following bolt commands on your CM.</p>
-<pre><code class="hljs css language-shell script">bolt command run 'docker image ls' --nodes @/etc/simple_grid/lc
+<pre><code class="hljs css language-shell script">bolt command run 'docker image ls' -t @/etc/simple_grid/lc
 </code></pre>
-<pre><code class="hljs css language-shell script">bolt command run 'docker ps -a' --nodes @/etc/simple_grid/lc
+<pre><code class="hljs css language-shell script">bolt command run 'docker ps -a' -t @/etc/simple_grid/lc
 </code></pre>
 <p><a href="https://asciinema.org/a/296613"><img src="https://asciinema.org/a/296613.svg" alt="asciicast"></a></p></li>
 </ul></li>
@@ -925,7 +979,7 @@ causing an indentation error in runtime.yaml, which is the output of one of the 
 <p>Then go to the line number that was mentioned in the errors message, in this case it is <strong>line 349</strong></p>
 <pre><code class="hljs css language-yaml"><span class="hljs-attr">site:</span>
    <span class="hljs-attr">name:</span> <span class="hljs-string">'OpenStack SIMPLE dev cluster'</span>
-  <span class="hljs-attr">email:</span> <span class="hljs-string">'mayank.sharma@cern.ch'</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">'admin@my-host.my-domain'</span>
   <span class="hljs-attr">latitude:</span> <span class="hljs-number">46.3</span>
   <span class="hljs-attr">longitude:</span> <span class="hljs-number">6.2</span>
 </code></pre>
