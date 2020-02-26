@@ -944,15 +944,19 @@ deployment is considered to be completed.</p></li>
 </code></pre>
 <pre><code class="hljs css language-shell script">bolt command run 'docker ps -a' -t @/etc/simple_grid/lc
 </code></pre>
-<p><a href="https://asciinema.org/a/296613"><img src="https://asciinema.org/a/296613.svg" alt="asciicast"></a></p></li>
+<p><a href="https://asciinema.org/a/296613"><img src="https://asciinema.org/a/296613.svg" alt="asciicast"></a>
+To verify that things look good at the end of the deployment, you can execute the  following command and ensure that the outliers field in the output
+is empty.</p></li>
 </ul></li>
 </ol>
+<pre><code class="hljs css language-shell script">bolt task run simple_grid::check_stage augmented_site_level_config_file=/etc/simple_grid/site_config/augmented_site_level_config_file.yaml site_infrastructure_key=site_infrastructure expected_stage=final -t localhost
+</code></pre>
 <p><strong>Note</strong>: If the deployment fails, please take a look at the deployment message and <a href="../help">share the logs</a> with us, in case they do not make sense.
 You could also try to rollback the deploy stage as and then execute it again with <code>puppet agent -t</code> command. To rollback deploy stage,
 execute the following command on the CM:</p>
 <pre><code class="hljs css language-shell script">puppet apply -e "class{'simple_grid::deploy::config_master::rollback':}"
 </code></pre>
-<p>If everything went well, you now have a production ready HTCondor cluster</p>
+<p>If everything went well, you now have a production ready HTCondor cluster.</p>
 <h2><a class="anchor" aria-hidden="true" id="inspecting-the-simple-cluster"></a><a href="#inspecting-the-simple-cluster" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inspecting the SIMPLE cluster</h2>
 <p>Let's go to our HTCondor-CE LC hosts. In the example cluster, it is simple-lc-node0.cern.ch.
 To take a look at the running HTCondor-CE container, execute:</p>
