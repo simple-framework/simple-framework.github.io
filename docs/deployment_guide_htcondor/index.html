@@ -489,6 +489,7 @@ would have the following format:</p>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;ce_fqdn</span> <span class="hljs-string">simple-lc01.cern.ch</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.30</span><span class="hljs-number">.19</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;batch_fqdn</span> <span class="hljs-string">simple-lc02.cern.ch</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.189</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn1_fqdn</span> <span class="hljs-string">simple-lc03.cern.ch</span>
   <span class="hljs-bullet">-</span> <span class="hljs-string">&amp;wn2_ip</span> <span class="hljs-number">188.184</span><span class="hljs-number">.84</span><span class="hljs-number">.190</span>
@@ -775,6 +776,7 @@ pip install simple-grid-yaml-compiler
 simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml -o output.yaml -s schema.yaml &gt;compiler.out 2&gt;compiler.err
 <span class="hljs-meta">$</span><span class="bash">?</span>
 deactivate
+pip uninstall virtualenv
 cd ~
 </code></pre>
 <p>If the compiler runs without any errors (i.e. the exit code is 0), you can proceed with the deployment. If there are errors, please take a look
