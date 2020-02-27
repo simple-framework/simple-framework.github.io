@@ -769,8 +769,12 @@ mkdir -p simple_grid_yaml_compiler/.temp
 cd simple_grid_yaml_compiler
 yum install -y python-pip
 pip install --upgrade pip
+pip install virtualenv
+virtualenv .env
+source ./.env/bin/activate
 pip install simple-grid-yaml-compiler
 simple_grid_yaml_compiler /etc/simple_grid/site_config/site_level_config_file.yaml -o output.yaml -s schema.yaml
+deactivate
 </code></pre>
 <p>If the compiler runs without any errors, you can proceed with the deployment. If there are errors, please take a look
 at the troubleshooting guide towards the end of this tutorial or <a href="../help">get in touch</a> with us for further assistance.</p>
@@ -901,7 +905,11 @@ and we can proceed to execute the stage. For instance:</p>
 </code></pre>
 <p>Otherwise, the outliers field will enlist the FQDN and stage of the machines that are not in pre_deploy stage yet.
 In that case, please verify that you have signed puppet certificates for all LC hosts. Try running <code>puppet agent -t</code>
-on the LC hosts that are outliers and <a href="../help">share any errors</a> with us.</p></li>
+on the LC hosts that are outliers and <a href="../help">share any errors</a> with us.
+If the command fails, it is probably due to the facts that bolt is being configured by puppet in the background.
+Please wait for a while for this to finish and try again. You can also tail the /var/log/messages to see what puppet is doing.</p>
+<pre><code class="hljs css language-shell script">tail -f /var/log/messages
+</code></pre></li>
 <li><p>On the CM node, to execute the pre_deploy stage of the framework, run</p>
 <pre><code class="hljs css language-shell script">puppet agent -t
 </code></pre>
