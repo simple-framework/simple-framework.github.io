@@ -837,7 +837,7 @@ Let's say we wish to check the stage for our LC hosts:</p>
 <pre><code class="hljs css language-shell script">simple lc-stage
 </code></pre>
 <p><strong>NOTE:</strong> that command <strong>has</strong> to work, otherwise the remaining steps of the deployment will fail. If the command initially <strong>fails</strong>, usually it is due to Puppet still configuring Bolt in the background. In that case, wait a minute or two and try again. If it keeps failing, please get in touch.</p>
-<p>That output is rather verbose, showing various underlying Bolt details. A more pleasant way to check the stages of the CM and all LC hosts in one go is as follows:</p>
+<p>Its output is rather verbose, showing various underlying Bolt details. A more pleasant way to check the stages of the CM and all LC hosts in one go is as follows:</p>
 <pre><code class="hljs css language-shell script">simple check-stage [ stage-name ]
 </code></pre>
 <p>where the optional 'stage-name' is the name of the expected stage, as detailed below. The command will print the outliers, i.e. those hosts that are <strong>not</strong> in the expected stage, along with their actual stages.</p>
