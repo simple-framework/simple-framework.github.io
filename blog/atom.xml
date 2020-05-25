@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://simple-framework.github.io/blog</id>
     <title>The SIMPLE Framework Blog</title>
-    <updated>2019-08-26T06:00:00.000Z</updated>
+    <updated>2020-05-12T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://simple-framework.github.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest The SIMPLE Framework news and events.</subtitle>
     <logo>https://simple-framework.github.io/img/SIMPLE_Logo.png</logo>
     <rights>Copyright © 2020 CERN</rights>
+    <entry>
+        <title type="html"><![CDATA[SIMPLE YAML compiler Web UI Deployment Guide]]></title>
+        <id>https://simple-framework.github.io/blog/2020/05/12/yaml-compiler-web.html</id>
+        <link href="https://simple-framework.github.io/blog/2020/05/12/yaml-compiler-web.html"/>
+        <updated>2020-05-12T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h1><a class="anchor" aria-hidden="true" id="backend-deployment"></a><a href="#backend-deployment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Backend deployment</h1> <p>Backend repository can be found <a href="https://github.com/simple-framework/simple_web_compiler_backend">here</a>.</p> <p>Frontend repository can be found <a href="https://github.com/simple-framework/simple_web_compiler_frontend">here</a>.</p> <h3><a class="anchor" aria-hidden="true" id="how-to-deploy-to-openshift"></a><a href="#how-to-deploy-to-openshift" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>How to deploy to OpenShift</h3> <ol> <li><p>Go to <a href="https://openshift.cern.ch/console/catalog">https://openshift.cern.ch/console/catalog</a></p></li> <li><p>Select Python from the list of options</p></li> </ol> <p><img src="https://user-images.githubusercontent.com/12242041/81801353-32a45c80-950c-11ea-86d5-21b907ef688a.png"></p> <ol start="3"> <li>Select your project, set application...</li></ol>]]></summary>
+        <author>
+            <name>Boris Vasilev</name>
+            <email/>
+            <uri>https://github.com/boris-vasilev</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Google Summer of Code 2019 Final Report]]></title>
         <id>https://simple-framework.github.io/blog/2019/08/26/gsoc19-report.html</id>
